@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-
+// #include <stdlib.h>     /* srand, rand */
+// #include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <time.h>
 
 using namespace std;
 
@@ -26,17 +28,17 @@ int main() {
     for (int value : myArray){
         cout << value << "  ";
     }
-    
+
     cout << endl;
 
+    srand (time(NULL));
 
-    srand (1000);
     int randNum;
 
-    randNum = rand();
+    randNum = rand() % 6 + 1;
     cout << randNum << endl;
 
-    randNum = rand();
+    randNum = rand() % 6 + 1;
     cout << randNum << endl;
 
 }

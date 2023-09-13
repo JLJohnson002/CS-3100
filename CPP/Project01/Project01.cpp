@@ -1,13 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 
-
 using namespace std;
 
-int dieRoll() {
-    cout << "im rolling" << endl;
-    return 5;
-}
+int dieRoll();
 
 int main() {
     cout << "How many rolls?: ";
@@ -21,4 +17,9 @@ int main() {
     }
 
     cout << "done rolling" << endl;
+}
+
+int dieRoll() {
+    cout << "im rolling" << endl;
+    return 9;
 }
