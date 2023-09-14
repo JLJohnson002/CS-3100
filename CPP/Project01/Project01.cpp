@@ -1,25 +1,54 @@
+// 1. Jimmy Johnson
+// 2. 09/13/2023
+// 3. Project 1 Dice Game
+
 #include <iostream>
 #include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
 int dieRoll();
 
 int main() {
-    cout << "How many rolls?: ";
+    srand ((unsigned) time(NULL));
+
     int rollCount;
+    int totals [11] = {};
+
+    cout << "How many rolls? ";
     cin >> rollCount;
-    cout << rollCount << " rolls" << endl;
+    cout << "Simulating " << rollCount << " rolls..." << endl;
+
 
     for (int i = 0; i < rollCount; i ++){
-        cout << "calling" << endl;
-        cout << dieRoll() << endl;
+        // Rolls a pair of dice however many times asked and tallies up the results
+
+        totals [(dieRoll()-2)] ++;
     }
 
-    cout << "done rolling" << endl;
+    cout << "Results:" << endl;
+    for (int i = 0; i < 11; i++){
+        // Prints out the results
+
+        cout << i + 2 << " was rolled " << totals[i];
+        if (totals[i] == 1){
+            cout << " time" <<endl;
+        }
+        else{
+        cout << " times" <<endl;
+        }
+    }
 }
 
 int dieRoll() {
-    cout << "im rolling" << endl;
-    return 9;
+    // Initilizes two dice and rolls them, then returns the product.
+
+    int die1;
+    int die2;
+
+    die1 = rand() % 6 + 1;
+    die2 = rand() % 6 + 1;
+
+    return die1 + die2;
 }
