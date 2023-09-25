@@ -20,7 +20,7 @@ int main()
     player1.setHealth(1);
     player1.print(cout);
 
-    while (player1.getHealth() != 0 && player2.getHealth() != 0)
+    while (player1.getHealth() != 0 || player2.getHealth() != 0)
     {
         cout << "playing" << endl;
         stopLoop++;
