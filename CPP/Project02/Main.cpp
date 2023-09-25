@@ -13,13 +13,12 @@ int main()
 {
     int stopLoop = 0;
 
-
-    cout << "Hello" << endl;
-    Character player1 = Character("Jim", "Sloth", 5, 10, 15, 20);
-    Character player2 = Character("Marie", "Beast", 50, 100, 150, 200);
+    Character player1 = Character("Uglar", "Barbarian", 80, 5, 5, 24);
+    Character player2 = Character("Zimzizz", "Wizard", 40, 5, 15, 18);
 
     player1.print(cout);
-    player2.print(cout);
+    player1.setHealth(1);
+    player1.print(cout);
 
     while (player1.getHealth() != 0 && player2.getHealth() != 0)
     {

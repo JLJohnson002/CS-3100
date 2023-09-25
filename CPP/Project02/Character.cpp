@@ -3,11 +3,12 @@
 
 using namespace std;
 
+// Constructors
 Character::Character()
 {
     name = "Null";
     role = "Void";
-    hitPoints = 0;
+    health = 0;
     attackBonus = 0;
     damageBonus = 0;
     armorClass = 0;
@@ -19,20 +20,16 @@ Character::Character(string newName, string newRole,
 {
     name = newName;
     role = newRole;
-    hitPoints = newHitPoints;
+    health = newHitPoints;
     attackBonus = newAttackBonus;
     damageBonus = newDamageBonus;
     armorClass = newArmorClass;
 }
 
-// Character::~Character()
-// {
-//     // fixme
-// }
-
+// Getters
 int Character::getHealth()
 {
-    return hitPoints;
+    return health;
 }
 
 string Character::getName()
@@ -45,21 +42,30 @@ string Character::getRole()
     return role;
 }
 
+// Setters
+void Character::setHealth(int newHealth)
+{
+    health = newHealth;
+}
+
+// Other Functions
 void Character::print(ostream &os)
 {
     os << "Character Summary" << endl;
     os << "-----------------" << endl;
     os << name << " the " << role << endl;
-    os << "HP: " << hitPoints << endl;
+    os << "HP: " << health << endl;
     os << "AB: " << attackBonus << endl;
     os << "DB: " << damageBonus << endl;
     os << "AC: " << armorClass << endl;
     os << endl;
 }
+
 void attack(Character &otherCharacter)
 {
     // fixme
 }
+
 void damage(int amount)
 {
     // fixme

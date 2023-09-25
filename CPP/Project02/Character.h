@@ -9,9 +9,9 @@
 
 // functions
 
-// print (ostream&)
-// attack (Charcter &otherCharacter)
-// damage  (int amount)
+// print (ostream&)         check
+// attack (Charcter &otherCharacter)    todo
+// damage  (int amount)                 todo
 
 // gethealth () int
 // getname () string
@@ -21,17 +21,16 @@ using namespace std;
 
 class Character
 {
-
     // Data
-    private:
+private:
     string name;
     string role;
-    int hitPoints;
+    int health;
     int attackBonus;
     int damageBonus;
     int armorClass;
 
-    public:
+public:
     // Constructors
     Character();
 
@@ -44,6 +43,9 @@ class Character
     int getHealth();
     string getName();
     string getRole();
+
+    // Setters
+    void setHealth(int);
 
     // Other Functions
     void print(ostream &);
