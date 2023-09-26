@@ -72,11 +72,21 @@ void Character::attack(Character &otherCharacter)
     int dieDamage;
 
     dieAttack = rand() % 20 + 1;
+    cout << "Attack roll: " << dieAttack << " + " << attackBonus << " = " << dieAttack + attackBonus << " -->";
 
     if (dieAttack + attackBonus >= otherCharacter.getArmorClass())
     {
+        cout << " HIT!" << endl;
         dieDamage = rand() % 10 + 1;
+        cout << "Damage: " << dieDamage << " + " << damageBonus << " = " << dieDamage + damageBonus << endl;
         otherCharacter.damage(dieDamage + damageBonus);
+        cout << otherCharacter.getName() << " has " << otherCharacter.getHealth() << " hit points remaining" << endl
+             << endl;
+    }
+    else
+    {
+        cout << " MISS!" << endl
+             << endl;
     }
 }
 
