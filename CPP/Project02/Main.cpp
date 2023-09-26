@@ -13,7 +13,6 @@ using namespace std;
 int main()
 {
     srand((unsigned)time(NULL));
-    int stopLoop = 0;
     int attackingPlayer = 1;
 
     Character player1 = Character("Uglar", "Barbarian", 80, 5, 5, 24);
@@ -35,12 +34,6 @@ int main()
             player2.attack(player1);
             cout << " --- P1 health remaining: " << player1.getHealth() << endl;
             attackingPlayer = 1;
-        }
-        stopLoop++;
-        if (stopLoop > 5000)
-        {
-            cout << "LOOP BREAK" << endl;
-            break;
         }
     }
     cout << endl;
