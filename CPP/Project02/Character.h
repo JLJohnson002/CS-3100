@@ -36,11 +36,9 @@ public:
 
     Character(string, string, int, int, int, int);
 
-    // Destructor
-    //~Character();
-
     // Getters
     int getHealth();
+    int getArmorClass();
     string getName();
     string getRole();
 

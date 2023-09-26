@@ -32,6 +32,11 @@ int Character::getHealth()
     return health;
 }
 
+int Character::getArmorClass()
+{
+    return armorClass;
+}
+
 string Character::getName()
 {
     return name;
@@ -61,12 +66,25 @@ void Character::print(ostream &os)
     os << endl;
 }
 
-void attack(Character &otherCharacter)
+void Character::attack(Character &otherCharacter)
 {
-    // fixme
+    int dieAttack;
+    int dieDamage;
+
+    dieAttack = rand() % 20 + 1;
+
+    if (dieAttack + attackBonus >= otherCharacter.getArmorClass())
+    {
+        dieDamage = rand() % 10 + 1;
+        otherCharacter.damage(dieDamage + damageBonus);
+    }
 }
 
-void damage(int amount)
+void Character::damage(int amount)
 {
-    // fixme
+    health -= amount;
+    if (health < 0)
+    {
+        health = 0;
+    }
 }
