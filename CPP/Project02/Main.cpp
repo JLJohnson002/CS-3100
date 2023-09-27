@@ -102,5 +102,4 @@ int main()
         cout << player1.getName() << " wins!" << endl;
     }
     cout << endl;
-    cout << "done" << endl;
 }
