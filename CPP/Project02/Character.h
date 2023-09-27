@@ -1,21 +1,7 @@
-// data
+// 1. Jimmy Johnson
+// 2. 09/26/2023
+// 3. Project 2 RPG Game
 
-// name (string)            check
-// role (string)            check
-// hit points (int)         check
-// attack bonus (int)       check
-// Damage Bonus (int)       check
-// armor class (int)        check
-
-// functions
-
-// print (ostream&)         check
-// attack (Charcter &otherCharacter)    todo
-// damage  (int amount)                 todo
-
-// gethealth () int
-// getname () string
-// getrole () string
 #include <string>
 using namespace std;
 

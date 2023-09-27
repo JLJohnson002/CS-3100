@@ -1,3 +1,7 @@
+// 1. Jimmy Johnson
+// 2. 09/26/2023
+// 3. Project 2 RPG Game
+
 #include "Character.h"
 #include "iostream"
 
@@ -55,7 +59,7 @@ void Character::setHealth(int newHealth)
 
 // Other Functions
 void Character::print(ostream &os)
-{
+{ // Prints all the information for the character
     os << "Character Summary" << endl;
     os << "-----------------" << endl;
     os << name << " the " << role << endl;
@@ -67,31 +71,32 @@ void Character::print(ostream &os)
 }
 
 void Character::attack(Character &otherCharacter)
-{
+{ // Rolls dice to see if the attak hits and if it does, how much damage it does
     int dieAttack;
     int dieDamage;
 
     dieAttack = rand() % 20 + 1;
-    cout << "Attack roll: " << dieAttack << " + " << attackBonus << " = " << dieAttack + attackBonus << " -->";
+    cout << "Attack roll: " << dieAttack << " + " << attackBonus << " = ";
+    cout << dieAttack + attackBonus << " -->";
 
     if (dieAttack + attackBonus >= otherCharacter.getArmorClass())
     {
         cout << " HIT!" << endl;
         dieDamage = rand() % 10 + 1;
-        cout << "Damage: " << dieDamage << " + " << damageBonus << " = " << dieDamage + damageBonus << endl;
+        cout << "Damage: " << dieDamage << " + " << damageBonus << " = ";
+        cout << dieDamage + damageBonus << endl;
         otherCharacter.damage(dieDamage + damageBonus);
-        cout << otherCharacter.getName() << " has " << otherCharacter.getHealth() << " hit points remaining" << endl
-             << endl;
+        cout << otherCharacter.getName() << " has " << otherCharacter.getHealth();
+        cout << " hit points remaining" << endl << endl;
     }
     else
     {
-        cout << " MISS!" << endl
-             << endl;
+        cout << " MISS!" << endl << endl;
     }
 }
 
 void Character::damage(int amount)
-{
+{// Reduces the characters health by the amount passed in
     health -= amount;
     if (health < 0)
     {

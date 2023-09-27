@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Jimmy/Documents/GitHub/CS-3100/CPP/Project02",
-      "program": "c:/Users/Jimmy/Documents/GitHub/CS-3100/CPP/Project02/build/Debug/outDebug",
+      "cwd": "c:/Users/Jim/Documents/GitHub/CS-3100/CPP/Project02",
+      "program": "c:/Users/Jim/Documents/GitHub/CS-3100/CPP/Project02/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

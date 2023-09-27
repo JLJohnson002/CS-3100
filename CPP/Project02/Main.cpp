@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 09/23/2023
+// 2. 09/26/2023
 // 3. Project 2 RPG Game
 
 #include <iostream>
@@ -11,7 +11,8 @@
 using namespace std;
 
 int main()
-{
+{   
+    // Variable creation
     srand((unsigned)time(NULL));
     int attackingPlayer = 1;
     string name;
@@ -21,6 +22,7 @@ int main()
     int damageBonus;
     int armorClass;
 
+    // First character data input and creation
     cout << "First character's name?" << endl;
     cin >> name;
     cout << endl;
@@ -39,10 +41,13 @@ int main()
     cout << name << " the " << role << "'s armor class?" << endl;
     cin >> armorClass;
     cout << endl;
-    // Character player1 = Character(name, role, health, attackBonus, damageBonus, armorClass);
-    Character player1 = Character("Ulgar", "Barbarian", 20, 5, 5, 10);
+
+    Character player1 = Character(name, role, health, 
+                                  attackBonus, damageBonus, armorClass);
+
     player1.print(cout);
 
+    // Second player data input and creation
     cout << "Second character's name?" << endl;
     cin >> name;
     cout << endl;
@@ -61,26 +66,33 @@ int main()
     cout << name << " the " << role << "'s armor class?" << endl;
     cin >> armorClass;
     cout << endl;
-    // Character player2 = Character(name, role, health, attackBonus, damageBonus, armorClass);
-    Character player2 = Character("Zimzizz", "Wizzard", 40, 6, 6, 9);
+
+    Character player2 = Character(name, role, health, 
+                                  attackBonus, damageBonus, armorClass);
+
     player2.print(cout);
+
+    // Start of simulation output
     cout << "Simulated Combat:" << endl;
 
+    // While the players have health left, keep fighting
     while (player1.getHealth() != 0 && player2.getHealth() != 0)
     {
-        if (attackingPlayer == 1)
+        if (attackingPlayer == 1)// If player 1 is attacking
         {
             cout << player1.getName() << " attacks!" << endl;
             player1.attack(player2);
             attackingPlayer = 2;
         }
-        else
+        else // If player 2 is attacking
         {
             cout << player2.getName() << " attacks!" << endl;
             player2.attack(player1);
             attackingPlayer = 1;
         }
     }
+
+    // When either player gets to 0 health, they lose
     if (player1.getHealth() == 0)
     {
         cout << player2.getName() << " wins!" << endl;
@@ -92,28 +104,3 @@ int main()
     cout << endl;
     cout << "done" << endl;
 }
-// Simulated Combat:
-// Uglar attacks!
-// Attack roll: 14 + 5 = 19 --> HIT!
-// Damage: 9 + 5 = 14
-// Zimzizz has 26 hit points remaining
-
-// Zimzizz attacks!
-// Attack roll: 17 + 5 = 22 --> MISS!
-
-// Uglar attacks!
-// Attack roll: 13 + 5 = 18 --> HIT!
-// Damage: 8 + 5 = 13
-// Zimzizz has 13 hit points remaining
-
-// Zimzizz attacks!
-// Attack roll: 19 + 5 = 24 --> HIT!
-// Damage:  8 + 15 = 23
-// Uglar has 57 hit points remaining
-
-// Uglar attacks!
-// Attack roll: 16 + 5 = 21 --> HIT!
-// Damage: 9 + 5 = 14
-// Zimzizz has 0 hit points remaining
-
-// Uglar wins!
