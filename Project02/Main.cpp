@@ -6,12 +6,11 @@
 #include <cstdlib>
 #include <time.h>
 #include "Character.h"
-#include <time.h>
 
 using namespace std;
 
 int main()
-{   
+{
     // Variable creation
     srand((unsigned)time(NULL));
     int attackingPlayer = 1;
@@ -42,7 +41,7 @@ int main()
     cin >> armorClass;
     cout << endl;
 
-    Character player1 = Character(name, role, health, 
+    Character player1 = Character(name, role, health,
                                   attackBonus, damageBonus, armorClass);
 
     player1.print(cout);
@@ -67,7 +66,7 @@ int main()
     cin >> armorClass;
     cout << endl;
 
-    Character player2 = Character(name, role, health, 
+    Character player2 = Character(name, role, health,
                                   attackBonus, damageBonus, armorClass);
 
     player2.print(cout);
