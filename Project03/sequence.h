@@ -102,6 +102,13 @@ public:
 	/// @param os the ostream to print to (ex: cout)
 	void print(ostream& os) const;
 
+	/// @brief operator<< overload, this simply calls the print method 
+	///			NOTE: you should not need to modify this, all the printing should be done in print()
+	/// @param os ostream reference to output sequence
+	/// @param s sequence to be output
+	/// @return reference to the ostream passed in
+	friend ostream& operator<<(ostream& os, const Sequence& s);
+
 	// YOU CAN MODIFY the following private declarations as needed to implement your sequence class
 private:
 	/// @brief private inner class for linked list nodes
