@@ -2,7 +2,7 @@
 
 Sequence::Sequence(size_type sz)
 {
-
+    
 }
 
 Sequence::Sequence(const Sequence& s)
