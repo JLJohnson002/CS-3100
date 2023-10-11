@@ -46,7 +46,21 @@ Sequence &Sequence::operator=(const Sequence &s)
 
 Sequence::value_type &Sequence::operator[](size_type position)
 {
-    throw exception();
+    if (position < 0 || position > numElts - 1)
+    {
+        throw exception();
+    }
+
+    else
+    {
+        SequenceNode *cur = head;
+
+        for (int i = 0; i < position; i++)
+        {
+            cur = cur->next;
+        }
+        return (cur->elt);
+    }
 }
 
 void Sequence::push_back(const value_type &value)
@@ -108,8 +122,7 @@ void Sequence::print(ostream &os) const
             os << cur->elt << " ";
             cur = cur->next;
         }
-            os << cur->elt << endl;
-
+        os << cur->elt << endl;
     }
 }
 
