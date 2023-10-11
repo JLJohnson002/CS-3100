@@ -40,7 +40,6 @@ Sequence::~Sequence()
 
 Sequence &Sequence::operator=(const Sequence &s)
 {
-
     return *this;
 }
 

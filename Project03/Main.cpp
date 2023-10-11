@@ -14,6 +14,8 @@ int main()
     test5[0]=1;
     test5[1]=2;
     test5[4]=3;
+    test5[7]=69;
+    test5[-1]=420;
     test5.print(cout);
     // Sequence testCopy(test5);
 
