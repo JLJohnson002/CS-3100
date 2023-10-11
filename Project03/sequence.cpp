@@ -36,6 +36,23 @@ Sequence::Sequence(const Sequence &s)
 
 Sequence::~Sequence()
 {
+    //FIXME
+    
+    // Student::~Student()
+    // {
+
+    //     GradeNode *current = gradeList;
+
+    //     while (current != nullptr)
+    //     {
+
+    //         GradeNode *killMeNext = current->next;
+
+    //         delete current;
+
+    //         current = killMeNext;
+    //     }
+    // }
 }
 
 Sequence &Sequence::operator=(const Sequence &s)
@@ -79,6 +96,9 @@ void Sequence::push_back(const value_type &value)
 
 void Sequence::pop_back()
 {
+    if (numElts > 0)
+    {
+    }
     throw exception();
 }
 
