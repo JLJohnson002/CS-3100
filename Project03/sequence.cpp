@@ -98,15 +98,18 @@ void Sequence::print(ostream &os) const
     if (head == nullptr)
     {
         os << "null" << endl;
-    }else{
-    SequenceNode *cur;
-    cur = head;
-    while (cur->next != nullptr)
-    {
-        os << cur->elt << " " << endl;
-        cur = cur->next;
     }
-    os << "end print" << endl;
+    else
+    {
+        SequenceNode *cur;
+        cur = head;
+        while (cur->next != nullptr)
+        {
+            os << cur->elt << " ";
+            cur = cur->next;
+        }
+            os << cur->elt << endl;
+
     }
 }
 
