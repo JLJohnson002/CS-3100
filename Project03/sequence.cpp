@@ -2,30 +2,54 @@
 
 Sequence::Sequence(size_type sz)
 {
-    
+    head = nullptr;
+    tail = nullptr;
+    numElts = 0;
+    SequenceNode *oldNode;
+    for (int i = 0; i < sz; i++)
+    {
+        SequenceNode *newNode = new SequenceNode;
+        numElts++;
+
+        if (i == 0)
+        {
+            head = newNode;
+            tail = newNode;
+            newNode->next = nullptr;
+            newNode->prev = nullptr;
+            oldNode = newNode;
+        }
+        else
+        {
+            tail = newNode;
+            newNode->next = nullptr;
+            newNode->prev = oldNode;
+            oldNode->next = newNode;
+            oldNode = newNode;
+        }
+    }
 }
 
-Sequence::Sequence(const Sequence& s)
+Sequence::Sequence(const Sequence &s)
 {
-
 }
 
 Sequence::~Sequence()
 {
-
 }
 
-Sequence& Sequence::operator=(const Sequence& s)
+Sequence &Sequence::operator=(const Sequence &s)
 {
+
     return *this;
 }
 
-Sequence::value_type& Sequence::operator[](size_type position)
+Sequence::value_type &Sequence::operator[](size_type position)
 {
     throw exception();
 }
 
-void Sequence::push_back(const value_type& value)
+void Sequence::push_back(const value_type &value)
 {
 }
 
@@ -39,12 +63,12 @@ void Sequence::insert(size_type position, value_type value)
     throw exception();
 }
 
-const Sequence::value_type& Sequence::front() const
+const Sequence::value_type &Sequence::front() const
 {
     throw exception();
 }
 
-const Sequence::value_type& Sequence::back() const
+const Sequence::value_type &Sequence::back() const
 {
     throw exception();
 }
@@ -61,7 +85,6 @@ Sequence::size_type Sequence::size() const
 
 void Sequence::clear()
 {
-
 }
 
 void Sequence::erase(size_type position, size_type count)
@@ -70,15 +93,26 @@ void Sequence::erase(size_type position, size_type count)
 }
 
 // Place code for printing sequence here (well not here, inside the method)
-void Sequence::print(ostream& os) const
+void Sequence::print(ostream &os) const
 {
-
+    if (head == nullptr)
+    {
+        os << "null" << endl;
+    }else{
+    SequenceNode *cur;
+    cur = head;
+    while (cur->next != nullptr)
+    {
+        os << cur->elt << " " << endl;
+        cur = cur->next;
+    }
+    os << "end print" << endl;
+    }
 }
 
 // Don't modify, do the output in the print() method
-ostream& operator<<(ostream& os, const Sequence& s)
+ostream &operator<<(ostream &os, const Sequence &s)
 {
     s.print(os);
     return os;
 }
-
