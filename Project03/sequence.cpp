@@ -20,7 +20,7 @@ Sequence::Sequence(size_type sz)
         if (i > 0)
         {
             newNode.next = nullptr;
-            newNode.prev = sequence[i-1];
+            // newNode.prev = sequence[i-1];
         }
         if (i == sz - 1)
         {
