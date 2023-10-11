@@ -72,7 +72,7 @@ void Sequence::push_back(const value_type &value)
     }
     SequenceNode *newNode = new SequenceNode;
     cur->next = newNode;
-    newNode->elt=value;
+    newNode->elt = value;
     newNode->prev = cur;
     tail = newNode;
 }
