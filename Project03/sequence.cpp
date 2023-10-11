@@ -64,6 +64,17 @@ Sequence::value_type &Sequence::operator[](size_type position)
 
 void Sequence::push_back(const value_type &value)
 {
+    SequenceNode *cur = head;
+
+    while (cur->next != nullptr)
+    {
+        cur = cur->next;
+    }
+    SequenceNode *newNode = new SequenceNode;
+    cur->next = newNode;
+    newNode->elt=value;
+    newNode->prev = cur;
+    tail = newNode;
 }
 
 void Sequence::pop_back()
