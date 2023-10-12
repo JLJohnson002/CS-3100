@@ -9,11 +9,10 @@ int main()
     cout << "start" << endl;
     Sequence test5(5);
     test5.print(cout);
-    test5[0] = 1;
-    test5[1] = 2;
-    test5[2] = 3;
-    test5[3] = 4;
-    test5[4] = 5;
+    for (int i = 0; i <= test5.size() - 1; i++)
+    {
+        test5[i] = i + 1;
+    }
     test5.print(cout);
     test5.push_back(6);
     test5.print(cout);

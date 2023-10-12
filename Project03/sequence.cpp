@@ -104,7 +104,19 @@ void Sequence::pop_back()
 
 void Sequence::insert(size_type position, value_type value)
 {
-    throw exception();
+    if (position < 0 || position > numElts - 1)
+    {
+        throw exception();
+    }
+    else
+    {
+        SequenceNode *cur = head;
+
+        for (int i = 0; i < position; i++)
+        {
+            cur = cur->next;
+        }
+    }
 }
 
 const Sequence::value_type &Sequence::front() const
@@ -119,12 +131,19 @@ const Sequence::value_type &Sequence::back() const
 
 bool Sequence::empty() const
 {
-    return false;
+    if (numElts == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 Sequence::size_type Sequence::size() const
 {
-    return -1;
+    return numElts;
 }
 
 void Sequence::clear()
