@@ -20,6 +20,13 @@ int main()
     test5.pop_back();
     test5.pop_back();
     test5.print(cout);
+    cout << "now inserting"<< endl;
+    cout << endl;
+    test5.insert(0,69);
+    test5.print(cout);
+    test5.insert(2,420);
+    test5.print(cout);
+
 
     cout << "end" << endl;
 }

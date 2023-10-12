@@ -111,10 +111,25 @@ void Sequence::insert(size_type position, value_type value)
     else
     {
         SequenceNode *cur = head;
-
+        SequenceNode *insertMe = new SequenceNode;
+        insertMe->elt = value;
+        numElts++;
         for (int i = 0; i < position; i++)
         {
             cur = cur->next;
+        }
+        if (cur->prev == nullptr)
+        {   // inserting at head, inserted is new head
+            head = insertMe;
+            head->next = cur;
+            cur->prev = insertMe;
+        }
+        else
+        {
+            insertMe->prev = cur->prev;
+            cur->prev->next = insertMe;
+            insertMe->next = cur;
+            cur->prev = insertMe;
         }
     }
 }
