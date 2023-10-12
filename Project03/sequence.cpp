@@ -32,6 +32,32 @@ Sequence::Sequence(size_type sz)
 
 Sequence::Sequence(const Sequence &s)
 {
+    // head = nullptr;
+    // tail = nullptr;
+    // numElts = 0;
+    // SequenceNode *oldNode;
+    // for (int i = 0; i < sz; i++)
+    // {
+    //     SequenceNode *newNode = new SequenceNode;
+    //     numElts++;
+
+    //     if (i == 0)
+    //     {
+    //         head = newNode;
+    //         tail = newNode;
+    //         newNode->next = nullptr;
+    //         newNode->prev = nullptr;
+    //         oldNode = newNode;
+    //     }
+    //     else
+    //     {
+    //         tail = newNode;
+    //         newNode->next = nullptr;
+    //         newNode->prev = oldNode;
+    //         oldNode->next = newNode;
+    //         oldNode = newNode;
+    //     }
+    // }
 }
 
 Sequence::~Sequence()
@@ -72,18 +98,22 @@ Sequence::value_type &Sequence::operator[](size_type position)
 
 void Sequence::push_back(const value_type &value)
 {
-    SequenceNode *cur = head;
-
-    while (cur->next != nullptr)
-    {
-        cur = cur->next;
-    }
     SequenceNode *newNode = new SequenceNode;
-    numElts++;
-    cur->next = newNode;
-    newNode->elt = value;
-    newNode->prev = cur;
-    tail = newNode;
+    if (head == tail)
+    {
+        head = newNode;
+        newNode->prev = nullptr;
+    }
+    else
+    {
+        SequenceNode *cur = tail;
+        numElts++;
+        cur->next = newNode;
+        newNode->elt = value;
+        newNode->prev = cur;
+    }
+        tail = newNode;
+        newNode->next = nullptr;
 }
 
 void Sequence::pop_back()
@@ -119,7 +149,7 @@ void Sequence::insert(size_type position, value_type value)
             cur = cur->next;
         }
         if (cur->prev == nullptr)
-        {   // inserting at head, inserted is new head
+        { // inserting at head, inserted is new head
             head = insertMe;
             head->next = cur;
             cur->prev = insertMe;
@@ -133,10 +163,19 @@ void Sequence::insert(size_type position, value_type value)
         }
     }
 }
-
+// @brief The size of the sequence is greater than zero
+/// throws an exception	if the sequence is empty
+/// @return a reference to the first item in the sequence.
 const Sequence::value_type &Sequence::front() const
 {
-    throw exception();
+    if (numElts > 0)
+    {
+        return head->elt;
+    }
+    else
+    {
+        throw exception();
+    }
 }
 
 const Sequence::value_type &Sequence::back() const
