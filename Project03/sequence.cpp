@@ -79,6 +79,7 @@ void Sequence::push_back(const value_type &value)
         cur = cur->next;
     }
     SequenceNode *newNode = new SequenceNode;
+    numElts++;
     cur->next = newNode;
     newNode->elt = value;
     newNode->prev = cur;
@@ -93,6 +94,7 @@ void Sequence::pop_back()
         tail = tail->prev;
         tail->next = nullptr;
         delete deleteMe;
+        numElts--;
     }
     else
     {
@@ -143,6 +145,7 @@ void Sequence::print(ostream &os) const
     }
     else
     {
+        os << "Number of elts: " << numElts << endl;
         SequenceNode *cur;
         cur = head;
         while (cur->next != nullptr)
