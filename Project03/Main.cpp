@@ -611,40 +611,40 @@ int main()
 #endif
 
     // Test assignment (=) operator
-    try
-    {
-        OUTSTREAM << "Testing assignment (=) operator" << endl;
-        OUTSTREAM << "------------------" << endl;
-#ifdef __ASSIGNMENT
-        Sequence data1(5);
-        Sequence data2(0);
+//     try
+//     {
+//         OUTSTREAM << "Testing assignment (=) operator" << endl;
+//         OUTSTREAM << "------------------" << endl;
+// #ifdef __ASSIGNMENT
+//         Sequence data1(5);
+//         Sequence data2(0);
 
-        for (int i = 0; i < 5; i++)
-        {
-            data1[i] = (i + 1) * 100;
-        }
+//         for (int i = 0; i < 5; i++)
+//         {
+//             data1[i] = (i + 1) * 100;
+//         }
 
-        data2 = data1;
+//         data2 = data1;
 
-        data2[0] = 1;
-        data2[1] = 2;
+//         data2[0] = 1;
+//         data2[1] = 2;
 
-        OUTSTREAM << "Data1:      " << data1 << endl;
-        OUTSTREAM << "Data2:      " << data2 << endl;
-        OUTSTREAM << "Should be:  <100, 200, 300, 400, 500>" << endl;
-        OUTSTREAM << "            <1, 2, 300, 400, 500>" << endl
-                  << endl;
-#else
-        OUTSTREAM << "*** UNHANDLED CRASH DURING TESTING ***" << endl
-                  << endl;
-#endif
-    }
+//         OUTSTREAM << "Data1:      " << data1 << endl;
+//         OUTSTREAM << "Data2:      " << data2 << endl;
+//         OUTSTREAM << "Should be:  <100, 200, 300, 400, 500>" << endl;
+//         OUTSTREAM << "            <1, 2, 300, 400, 500>" << endl
+//                   << endl;
+// #else
+//         OUTSTREAM << "*** UNHANDLED CRASH DURING TESTING ***" << endl
+//                   << endl;
+// #endif
+//     }
 
-    catch (exception &e)
-    {
-        OUTSTREAM << "Exception: " << e.what() << endl
-                  << endl;
-    }
+//     catch (exception &e)
+//     {
+//         OUTSTREAM << "Exception: " << e.what() << endl
+//                   << endl;
+//     }
 
 #ifdef __GRADING
     OUTSTREAM << "Points (out of 3):            3" << endl

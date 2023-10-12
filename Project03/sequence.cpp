@@ -64,11 +64,18 @@ Sequence::~Sequence()
 {
     SequenceNode *cur = head;
 
-    while (cur->next != nullptr)
+    if (numElts == 0)
     {
-        SequenceNode *deleteNext = cur->next;
         delete cur;
-        cur = deleteNext;
+    }
+    else
+    {
+        while (cur->next != nullptr)
+        {
+            SequenceNode *deleteNext = cur->next;
+            delete cur;
+            cur = deleteNext;
+        }
     }
 }
 
@@ -99,7 +106,8 @@ Sequence::value_type &Sequence::operator[](size_type position)
 void Sequence::push_back(const value_type &value)
 {
     SequenceNode *newNode = new SequenceNode;
-    if (head == tail)
+
+    if (head == nullptr)
     {
         head = newNode;
         newNode->prev = nullptr;
@@ -109,11 +117,11 @@ void Sequence::push_back(const value_type &value)
         SequenceNode *cur = tail;
         numElts++;
         cur->next = newNode;
-        newNode->elt = value;
         newNode->prev = cur;
     }
-        tail = newNode;
-        newNode->next = nullptr;
+    newNode->elt = value;
+    tail = newNode;
+    newNode->next = nullptr;
 }
 
 void Sequence::pop_back()
@@ -121,10 +129,20 @@ void Sequence::pop_back()
     if (numElts > 0)
     {
         SequenceNode *deleteMe = tail;
-        tail = tail->prev;
-        tail->next = nullptr;
-        delete deleteMe;
-        numElts--;
+        if (numElts == 1)
+        {
+            delete deleteMe;
+            numElts--;
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            tail = tail->prev;
+            tail->next = nullptr;
+            delete deleteMe;
+            numElts--;
+        }
     }
     else
     {
