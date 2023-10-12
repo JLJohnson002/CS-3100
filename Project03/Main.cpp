@@ -17,6 +17,11 @@ int main()
     test5.print(cout);
     test5.push_back(6);
     test5.print(cout);
+    test5.pop_back();
+    test5.pop_back();
+    test5.pop_back();
+    test5.print(cout);
+
 
     cout << "end" << endl;
 }

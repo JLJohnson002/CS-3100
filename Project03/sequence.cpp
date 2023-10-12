@@ -36,23 +36,14 @@ Sequence::Sequence(const Sequence &s)
 
 Sequence::~Sequence()
 {
-    //FIXME
-    
-    // Student::~Student()
-    // {
+    SequenceNode *cur = head;
 
-    //     GradeNode *current = gradeList;
-
-    //     while (current != nullptr)
-    //     {
-
-    //         GradeNode *killMeNext = current->next;
-
-    //         delete current;
-
-    //         current = killMeNext;
-    //     }
-    // }
+    while (cur->next != nullptr)
+    {
+        SequenceNode *deleteNext = cur->next;
+        delete cur;
+        cur = deleteNext;
+    }
 }
 
 Sequence &Sequence::operator=(const Sequence &s)
@@ -98,8 +89,15 @@ void Sequence::pop_back()
 {
     if (numElts > 0)
     {
+        SequenceNode *deleteMe = tail;
+        tail = tail->prev;
+        tail->next = nullptr;
+        delete deleteMe;
     }
-    throw exception();
+    else
+    {
+        throw exception();
+    }
 }
 
 void Sequence::insert(size_type position, value_type value)
