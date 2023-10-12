@@ -32,32 +32,33 @@ Sequence::Sequence(size_type sz)
 
 Sequence::Sequence(const Sequence &s)
 {
-    // head = nullptr;
-    // tail = nullptr;
-    // numElts = 0;
-    // SequenceNode *oldNode;
-    // for (int i = 0; i < sz; i++)
-    // {
-    //     SequenceNode *newNode = new SequenceNode;
-    //     numElts++;
+    head = nullptr;
+    tail = nullptr;
+    numElts = 0;
 
-    //     if (i == 0)
-    //     {
-    //         head = newNode;
-    //         tail = newNode;
-    //         newNode->next = nullptr;
-    //         newNode->prev = nullptr;
-    //         oldNode = newNode;
-    //     }
-    //     else
-    //     {
-    //         tail = newNode;
-    //         newNode->next = nullptr;
-    //         newNode->prev = oldNode;
-    //         oldNode->next = newNode;
-    //         oldNode = newNode;
-    //     }
-    // }
+    SequenceNode *copyNode = s.head;
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        SequenceNode *newNode = new SequenceNode;
+        numElts++;
+
+        if (i == 0)
+        {
+            newNode->elt = copyNode->elt;
+            head = newNode;
+            tail = newNode;
+            newNode->prev = nullptr;
+        }
+        else
+        {
+            newNode->elt = copyNode->elt;
+            tail = newNode;
+            newNode->prev = copyNode->prev;
+        }
+        newNode->next = copyNode->next;
+        copyNode = copyNode->next;
+    }
 }
 
 Sequence::~Sequence()
@@ -181,9 +182,7 @@ void Sequence::insert(size_type position, value_type value)
         }
     }
 }
-// @brief The size of the sequence is greater than zero
-/// throws an exception	if the sequence is empty
-/// @return a reference to the first item in the sequence.
+
 const Sequence::value_type &Sequence::front() const
 {
     if (numElts > 0)
