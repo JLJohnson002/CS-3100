@@ -1,7 +1,6 @@
 #include "tree.h"
 #include <vector>
 
-
 AVLTree::AVLTree(size_type sz)
 // Constructor of size 'sz'
 {
@@ -140,12 +139,6 @@ int AVLTree::getSize()
 {
 }
 
-friend ostream &operator<<(ostream &os, const AVLTree &me)
-// print the tree using the << operator.
-// You should overload the << operator to print the AVL tree “sideways”
-// using indentation to show the structure of the tree.
-{
-}
 bool AVLTree::find(int key, string &value)
 // if the given key is found in the AVL tree,
 // this function should return true and place the corresponding value in value.

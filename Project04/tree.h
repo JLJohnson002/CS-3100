@@ -57,31 +57,26 @@ public:
     // and false if the pair could not be inserted
     // (for example, due to a duplicate key already found in the map).
     // The time complexity for insert should be O(log2 n).
-    bool AVLTree::insert(int key, string value);
+    bool insert(int key, string value);
 
     // return the height of the AVL tree. The time complexity for getHeight should be O(1).
-    int AVLTree::getHeight();
+    int getHeight();
 
     // return the total number of nodes (key/value pairs) in the AVL tree.
     // The time complexity for getSize should be O(1).
-    int AVLTree::getSize();
-
-    // print the tree using the << operator.
-    // You should overload the << operator to print the AVL tree “sideways”
-    // using indentation to show the structure of the tree.
-    friend ostream &operator<<(ostream &os, const AVLTree &me);
+    int getSize();
 
     // if the given key is found in the AVL tree,
     // this function should return true and place the corresponding value in value.
     // Otherwise this function should return false (and the value in value can be anything).
     // The time complexity for find should be O(log2 n).
-    bool AVLTree::find(int key, string &value);
+    bool find(int key, string &value);
 
     // This function should return a C++ vector of strings containing all of the values in the tree
     // with keys ≥ lowkey and ≤ highkey. For each key found in the given range,
     // there will be one value in the vector. If no matching key/value pairs are found,
     // the function should return an empty vector.
-    vector<string> AVLTree::findRange(int lowkey, int highkey);
+    vector<string> findRange(int lowkey, int highkey);
 
     //*******************************************************************************************
     /// @brief The value of item is append to the sequence.
