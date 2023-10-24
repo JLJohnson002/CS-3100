@@ -7,5 +7,8 @@ using namespace std;
 
 int main()
 {
-    cout<<"hello world"<< endl;
+    cout << "Start" << endl;
+    AVLTree test1();
+
+    cout << "End" << endl;
 }
