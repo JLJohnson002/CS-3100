@@ -2,7 +2,7 @@
 #include <vector>
 
 AVLTree::AVLTree()
-// Constructor of size 'sz'
+// Empty constructor
 {
     // Create an empty AVLTree
     root = nullptr;
@@ -12,6 +12,9 @@ AVLTree::AVLTree()
 AVLTree::AVLTree(const AVLTree &s)
 // Copies a given Tree
 {
+    //FIXME
+    AVLTree newTree;
+    newTree.insert(s.root->key,s.root->value);
     // copy root then left then right
 }
 
@@ -20,13 +23,32 @@ AVLTree::~AVLTree()
   //   delete left then right then self
 }
 
-bool AVLTree::insert(int key, string value) {}
 // Insert a new key/value pair into the tree.
 // For this assignment the duplicate keys are not allowed.
 // This function should return true if the key/value pair is successfully inserted into the map,
 //  and false if the pair could not be inserted
 //(for example, due to a duplicate key already found in the map).
 // The time complexity for insert should be O(log2 n).
+bool AVLTree::insert(int key, string value)
+{
+        TreeNode *cur = root;
+
+    if (cur == nullptr)
+    {
+        TreeNode *newNode = new TreeNode(key, value);
+        numElts++;
+
+        root = newNode;
+        return true;
+    }
+    else
+    {
+        if (key > cur->key)
+        {
+
+        }
+    }
+}
 
 int AVLTree::getHeight()
 // return the height of the AVL tree. The time complexity for getHeight should be O(1).
@@ -38,6 +60,7 @@ int AVLTree::getSize()
 // return the total number of nodes (key/value pairs) in the AVL tree.
 // The time complexity for getSize should be O(1).
 {
+    return numElts;
 }
 
 bool AVLTree::find(int key, string &value)
@@ -61,14 +84,34 @@ void AVLTree::print(ostream &os) const
 { // Prints all nodes in a sequence
     if (root == nullptr)
     {
-        os << "null" << endl;
+        os << "empty tree";
     }
     else
-    {
-        TreeNode *cur;
-        cur = root;
-        if (cur->left == nullptr){
-            os << cur->key << endl;
+    { // Print right center left
+        TreeNode *cur = root;
+
+        if (cur->right != nullptr)
+        {
+            os << cur->right;
+        }
+        else
+        {
+            int indent = cur->height;
+            string indentSpace = "";
+            for (int i = 0; i < indent; i++)
+            {
+                indentSpace += "    ";
+            }
+            os << indentSpace << cur->key << ", " << cur->value;
+            if (cur->left == nullptr)
+            {
+                return;
+            }
+            else
+            {
+
+                os << cur->left;
+            }
         }
 
         // print(cur);

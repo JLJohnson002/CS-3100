@@ -76,10 +76,9 @@ private:
         string value;
         int height;
 
-        TreeNode *right; // pointer to next Node.
-        TreeNode *left; // pointer to previous Node.
+        TreeNode *right; // pointer to right Node.
+        TreeNode *left; // pointer to left Node.
 
-        /// @brief empty constructor, ensure next and prev are nullptr
         TreeNode()
         {
             key = 0;
@@ -92,7 +91,7 @@ private:
         /// @brief parameterized constructor, next and prev are set to nullptr and the
         /// node's element is set to the given value
         /// @param item value the node's element will be set to
-        TreeNode(int newKey, string newValue) : right(nullptr), left(nullptr), key(this->key), value (this->value)
+        TreeNode(int newKey, string newValue) : right(nullptr), left(nullptr), key(newKey), value (newValue)
         {
         }
 
