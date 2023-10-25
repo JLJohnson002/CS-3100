@@ -9,6 +9,9 @@ using namespace std;
 class AVLTree
 {
 public:
+    //{
+    // ASKME Only here for the unknown value of linked list. not needed for given int and string of AVLTree
+
     /// @brief Sequence::value_type is the data type of values in the sequence.
     /// Any primative C++ data type(int, double, bool, char, etc.), or a class
     /// with a default constructor, a destructor, an assignment operator, and a
@@ -18,6 +21,8 @@ public:
     /// @brief Sequence::size_type is the data type of any variable the number of
     /// items in a sequence.
     typedef unsigned int size_type;
+    //}
+
 
     // CONSTRUCTORS for the sequence class:
 
@@ -81,23 +86,30 @@ private:
     class TreeNode
     {
     public:
-        //ASKME
+        //ASKME These are not pointers but require a * to initilize. 
         AVLTree::TreeNode *key;
         AVLTree::TreeNode *value;
         AVLTree::TreeNode *height;
 
-        TreeNode *right; // pointer to next Node. If node is the tail, next is nullptr
-        TreeNode *left; // pointer to previous Node. If node is the head, prev is nullptr
+        TreeNode *right; // pointer to next Node. 
+        TreeNode *left; // pointer to previous Node. 
 
         /// @brief empty constructor, ensure next and prev are nullptr
+        //ASKME What does the : mean for constructor?
         TreeNode() : right(nullptr), left(nullptr)
         {
+            key = nullptr;
+            value = nullptr;
+            height = nullptr;
+            // Not needed after the : above?
+            // right = nullptr;
+            // left = nullptr;
         }
 
         /// @brief parameterized constructor, next and prev are set to nullptr and the
         /// node's element is set to the given value
         /// @param item value the node's element will be set to
-        TreeNode(int key, string value) : right(nullptr), left(nullptr), key(this->key), value (this->value)
+        TreeNode(int newKey, string newValue) : right(nullptr), left(nullptr), key(this->key), value (this->value)
         {
         }
 
