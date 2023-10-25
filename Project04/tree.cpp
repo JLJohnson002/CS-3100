@@ -31,7 +31,7 @@ bool AVLTree::insert(int key, string value) {}
 int AVLTree::getHeight()
 // return the height of the AVL tree. The time complexity for getHeight should be O(1).
 {
-    // return this->height;
+    return root->height;
 }
 
 int AVLTree::getSize()

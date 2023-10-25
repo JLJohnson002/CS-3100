@@ -9,20 +9,6 @@ using namespace std;
 class AVLTree
 {
 public:
-    //{
-    // ASKME Only here for the unknown value of linked list. not needed for given int and string of AVLTree
-
-    /// @brief Sequence::value_type is the data type of values in the sequence.
-    /// Any primative C++ data type(int, double, bool, char, etc.), or a class
-    /// with a default constructor, a destructor, an assignment operator, and a
-    /// copy constructor can be used.
-    typedef int value_type;
-
-    /// @brief Sequence::size_type is the data type of any variable the number of
-    /// items in a sequence.
-    typedef unsigned int size_type;
-    //}
-
 
     // CONSTRUCTORS for the sequence class:
 
@@ -86,24 +72,21 @@ private:
     class TreeNode
     {
     public:
-        //ASKME These are not pointers but require a * to initilize. 
-        AVLTree::TreeNode *key;
-        AVLTree::TreeNode *value;
-        AVLTree::TreeNode *height;
+        int key;
+        string value;
+        int height;
 
-        TreeNode *right; // pointer to next Node. 
-        TreeNode *left; // pointer to previous Node. 
+        TreeNode *right; // pointer to next Node.
+        TreeNode *left; // pointer to previous Node.
 
         /// @brief empty constructor, ensure next and prev are nullptr
-        //ASKME What does the : mean for constructor?
-        TreeNode() : right(nullptr), left(nullptr)
+        TreeNode()
         {
-            key = nullptr;
-            value = nullptr;
-            height = nullptr;
-            // Not needed after the : above?
-            // right = nullptr;
-            // left = nullptr;
+            key = 0;
+            value = "";
+            height = 0;
+            right = nullptr;
+            left = nullptr;
         }
 
         /// @brief parameterized constructor, next and prev are set to nullptr and the
@@ -121,6 +104,6 @@ private:
     // MEMBER DATA.  These are the data items that each sequence object will contain.  For a
     // doubly-linked list, each sequence will have a head and tail pointer, and numElts
     TreeNode *root;
-    size_type numElts; // Number of elements in the sequence
+    int numElts; // Number of elements in the sequence
 
 }; // End of class AVLTree

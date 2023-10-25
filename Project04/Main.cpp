@@ -8,7 +8,8 @@ using namespace std;
 int main()
 {
     cout << "Start" << endl;
-    AVLTree test1();
+    AVLTree test1;
+    cout << test1 << endl;
 
     cout << "End" << endl;
 }
