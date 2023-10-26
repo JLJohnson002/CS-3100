@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <fstream>
 
-#include "tree.h"
+#include "AVLTree.h"
 using namespace std;
 
 int main()
