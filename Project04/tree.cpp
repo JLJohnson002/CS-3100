@@ -12,9 +12,9 @@ AVLTree::AVLTree()
 AVLTree::AVLTree(const AVLTree &s)
 // Copies a given Tree
 {
-    //FIXME
+    // FIXME
     AVLTree newTree;
-    newTree.insert(s.root->key,s.root->value);
+    newTree.insert(s.root->key, s.root->value);
     // copy root then left then right
 }
 
@@ -31,7 +31,7 @@ AVLTree::~AVLTree()
 // The time complexity for insert should be O(log2 n).
 bool AVLTree::insert(int key, string value)
 {
-        TreeNode *cur = root;
+    TreeNode *cur = root;
 
     if (cur == nullptr)
     {
@@ -41,17 +41,23 @@ bool AVLTree::insert(int key, string value)
         root = newNode;
         return true;
     }
+
+    if (key > cur->key)
+    {
+        cur->right->insert(key, value, cur->right);
+    }
+    else if (key < cur->key)
+    {
+        cur->left.insert(key, value);
+    }
     else
     {
-        if (key > cur->key)
-        {
-
-        }
+        return false;
     }
 }
 
-int AVLTree::getHeight()
 // return the height of the AVL tree. The time complexity for getHeight should be O(1).
+int AVLTree::getHeight()
 {
     return root->height;
 }

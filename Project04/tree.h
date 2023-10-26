@@ -10,13 +10,12 @@ class AVLTree
 {
 public:
 
-    // CONSTRUCTORS for the sequence class:
+    // CONSTRUCTORS:
 
-    /// @brief Creates an empty AVL tree.
+    // Creates an empty AVL tree
     AVLTree();
 
-    /// @brief Creates a (deep) copy of sequence seq.
-    /// @param s Sequence to be copied
+    // Copies a given tree
     AVLTree(const AVLTree &s);
 
     /// @brief Destroys all items in the sequence and release the memory associated
@@ -83,7 +82,7 @@ private:
         {
             key = 0;
             value = "";
-            height = 0;
+            height = 5;
             right = nullptr;
             left = nullptr;
         }
@@ -95,9 +94,8 @@ private:
         {
         }
 
-        /// @brief node destructor. Think about what it would mean and whether anything
-        /// should be done here
-        ~TreeNode(){};
+        bool insert(int key, string value, TreeNode *node);
+
     };
 
     // MEMBER DATA.  These are the data items that each sequence object will contain.  For a
