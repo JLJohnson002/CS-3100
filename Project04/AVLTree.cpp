@@ -1,4 +1,4 @@
-#include "tree.h"
+#include "AVLTree.h"
 #include <vector>
 
 AVLTree::AVLTree()
@@ -29,37 +29,112 @@ AVLTree::~AVLTree()
 //  and false if the pair could not be inserted
 //(for example, due to a duplicate key already found in the map).
 // The time complexity for insert should be O(log2 n).
-bool AVLTree::insert(int key, string value)
+bool AVLTree::insert(int newKey, string newValue)
 {
-    TreeNode *cur = root;
+    return insert(newKey, newValue, root);
+}
+
+bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
+{
+    bool inserted = false;
+
+    // Insert the new key and value
 
     if (cur == nullptr)
     {
-        TreeNode *newNode = new TreeNode(key, value);
-        numElts++;
 
-        root = newNode;
-        return true;
+        cur = new TreeNode(newKey, newValue);
+
+        inserted = true;
+    }
+    else if (newKey == cur->key)
+    {
+
+        inserted = false;
     }
 
-    if (key > cur->key)
+    else if (newKey < cur->key)
     {
-        cur->right->insert(key, value, cur->right);
+
+        inserted = insert(newKey, newValue, cur->left);
     }
-    else if (key < cur->key)
-    {
-        cur->left.insert(key, value);
-    }
+
     else
     {
-        return false;
+
+        inserted = insert(newKey, newValue, cur->right);
     }
+    // Update my height
+
+    int leftChildHeight = getHeight(cur->left);
+
+    int rightChildHeight = getHeight(cur->right);
+
+    cur->height = max(leftChildHeight, rightChildHeight) + 1;
+
+    return inserted;
+
+} /// ****************** END OF INSERT *****************************************
+
+void AVLTree::leftRotate(TreeNode *problem)
+{ // Do this if balance is negative
+    // TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
+    TreeNode *hook = problem->right;
+    TreeNode *hookTemp = hook->left;
+
+    hook->left = problem;
+    problem->right = hookTemp;
+}
+
+void AVLTree::rightRotate(TreeNode *problem)
+{// Do this if balance is positive
+    TreeNode *problemTemp = problem;
+    TreeNode *hook = problem->left;
+    TreeNode *hookTemp = hook->right;
+
+    hook->right = problem;
+    problem->left = hookTemp;
+}
+
+void AVLTree::doubleLeftRotate(TreeNode *problem)
+{
+    rightRotate(problem->right);
+    leftRotate(problem);
+}
+
+void AVLTree::doubleRightRotate(TreeNode *problem)
+{
+    leftRotate(problem->left);
+    rightRotate(problem);
 }
 
 // return the height of the AVL tree. The time complexity for getHeight should be O(1).
 int AVLTree::getHeight()
 {
-    return root->height;
+    return getHeight(root);
+}
+int AVLTree::getHeight(TreeNode *cur)
+{
+    if (cur == nullptr)
+    {
+        return -1;
+    }
+    else
+    {
+        return cur->height;
+    }
+}
+
+int AVLTree::max(int left, int right)
+{
+    if (left > right)
+    {
+        return left;
+    }
+    else
+    {
+        return right;
+    }
 }
 
 int AVLTree::getSize()
