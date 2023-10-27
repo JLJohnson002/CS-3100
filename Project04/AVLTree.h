@@ -56,13 +56,13 @@ public:
 
     int getHeight(TreeNode *);// helper
 
-    void leftRotate(TreeNode *problem);
+    void leftRotate(TreeNode *&problem);
 
-    void rightRotate(TreeNode *problem);
+    void rightRotate(TreeNode *&problem);
 
-    void doubleLeftRotate(TreeNode *problem);
+    void doubleLeftRotate(TreeNode *&problem);
 
-    void doubleRightRotate(TreeNode *problem);
+    void doubleRightRotate(TreeNode *&problem);
 
     int max(int left, int right);
 
