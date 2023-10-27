@@ -72,13 +72,38 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
 
     cur->height = max(leftChildHeight, rightChildHeight) + 1;
 
+    int balance = cur->left->height - cur->right->height;
+
+    if (balance < -1) // negative unbalanced
+    {
+        if (cur->right->left - cur->right->right < 0) // negative
+        {
+            leftRotate(cur);
+        }
+        else
+        { // positive
+            doubleLeftRotate(cur);
+        }
+    }
+    else if (balance > 1) // positive unbalanced
+    {
+        if (cur->left->left - cur->left->right > 0) // positive
+        {
+            rightRotate(cur);
+        }
+        else// negative
+        {
+            doubleRightRotate(cur);
+        }
+    }
+
     return inserted;
 
 } /// ****************** END OF INSERT *****************************************
 
 void AVLTree::leftRotate(TreeNode *problem)
 { // Do this if balance is negative
-    // TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
+    TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
     TreeNode *hook = problem->right;
     TreeNode *hookTemp = hook->left;
 
@@ -87,7 +112,7 @@ void AVLTree::leftRotate(TreeNode *problem)
 }
 
 void AVLTree::rightRotate(TreeNode *problem)
-{// Do this if balance is positive
+{ // Do this if balance is positive
     TreeNode *problemTemp = problem;
     TreeNode *hook = problem->left;
     TreeNode *hookTemp = hook->right;
