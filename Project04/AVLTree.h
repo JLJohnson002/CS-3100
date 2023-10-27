@@ -61,10 +61,12 @@ public:
     void rightRotate(TreeNode *problem);
 
     void doubleLeftRotate(TreeNode *problem);
-    
+
     void doubleRightRotate(TreeNode *problem);
 
     int max(int left, int right);
+
+    int balance(TreeNode *);
 
     // return the total number of nodes (key/value pairs) in the AVL tree.
     // The time complexity for getSize should be O(1).

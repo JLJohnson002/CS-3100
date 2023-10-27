@@ -44,7 +44,7 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
     {
 
         cur = new TreeNode(newKey, newValue);
-        numElts ++;
+        numElts++;
 
         inserted = true;
     }
@@ -73,11 +73,12 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
 
     cur->height = max(leftChildHeight, rightChildHeight) + 1;
 
-    int balance = cur->left->height - cur->right->height;
+    // int balance = cur->left->height - cur->right->height;
+    int bal = balance(cur);
 
-    if (balance < -1) // negative unbalanced
+    if (bal < -1) // negative unbalanced
     {
-        if (cur->right->left - cur->right->right < 0) // negative
+        if (balance(cur->right) < 0) // negative
         {
             leftRotate(cur);
         }
@@ -86,17 +87,23 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
             doubleLeftRotate(cur);
         }
     }
-    else if (balance > 1) // positive unbalanced
+    else if (bal > 1) // positive unbalanced
     {
-        if (cur->left->left - cur->left->right > 0) // positive
+        if (balance(cur->left) > 0) // positive
         {
             rightRotate(cur);
         }
-        else// negative
+        else // negative
         {
             doubleRightRotate(cur);
         }
     }
+
+    leftChildHeight = getHeight(cur->left);
+
+    rightChildHeight = getHeight(cur->right);
+
+    cur->height = max(leftChildHeight, rightChildHeight) + 1;
 
     return inserted;
 
@@ -107,10 +114,12 @@ void AVLTree::leftRotate(TreeNode *problem)
     TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
     TreeNode *hook = problem->right;
     TreeNode *hookTemp = hook->left;
-    problem = hook;
 
+    problem = hook;
+    problem->left=problemTemp;
     hook->left = problemTemp;
-    problem->right = hookTemp;
+    problem->right = hook->right;
+    problem->left->right = hookTemp;
 }
 
 void AVLTree::rightRotate(TreeNode *problem)
@@ -140,6 +149,33 @@ int AVLTree::getHeight()
 {
     return getHeight(root);
 }
+
+int AVLTree::balance(TreeNode *cur)
+{
+    int left;
+    int right;
+
+    if (cur->left == nullptr)
+    {
+        left = -1;
+    }
+    else
+    {
+        left = cur->left->height;
+    }
+
+    if (cur->right == nullptr)
+    {
+        right = -1;
+    }
+    else
+    {
+        right = cur->right->height;
+    }
+    cout<< left-right<< endl;
+    return left-right;
+}
+
 int AVLTree::getHeight(TreeNode *cur)
 {
     if (cur == nullptr)
