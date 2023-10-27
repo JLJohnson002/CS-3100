@@ -44,6 +44,7 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
     {
 
         cur = new TreeNode(newKey, newValue);
+        numElts ++;
 
         inserted = true;
     }
@@ -99,15 +100,16 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
 
     return inserted;
 
-} /// ****************** END OF INSERT *****************************************
+} /// ****************** END OF INSERT ***************************************************************
 
 void AVLTree::leftRotate(TreeNode *problem)
 { // Do this if balance is negative
     TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
     TreeNode *hook = problem->right;
     TreeNode *hookTemp = hook->left;
+    problem = hook;
 
-    hook->left = problem;
+    hook->left = problemTemp;
     problem->right = hookTemp;
 }
 

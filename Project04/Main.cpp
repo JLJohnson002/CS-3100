@@ -16,15 +16,16 @@ int main()
     test1.insert(60, "sixty");
     test1.insert(70, "seventy");
     test1.insert(30, "thirty");
+    cout << test1.getSize() << endl;
+    cout << test1.getHeight() << endl;
     if (test1.insert(30, "thirty") == true)
     {
-        cout << "TRUE" << endl;
+        cout << "inserted-TRUE" << endl;
     }
     else if (test1.insert(30, "thirty") == false)
     {
-        cout << "FALSE" << endl;
+        cout << "not inserted-FALSE" << endl;
     }
-    cout << test1 << endl;
 
     cout << "End" << endl;
 }
