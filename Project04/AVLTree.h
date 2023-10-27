@@ -9,7 +9,25 @@ using namespace std;
 class AVLTree
 {
 public:
+    class TreeNode
+    {
+    public:
+        int key;
+        string value;
+        int height;
 
+        TreeNode *right; // pointer to right Node.
+        TreeNode *left;  // pointer to left Node.
+
+        TreeNode(int newKey, string newValue)
+        {
+            key = newKey;
+            value = newValue;
+            height = 0;
+            right = nullptr;
+            left = nullptr;
+        }
+    };
     // CONSTRUCTORS:
 
     // Creates an empty AVL tree
@@ -31,8 +49,22 @@ public:
     // The time complexity for insert should be O(log2 n).
     bool insert(int key, string value);
 
+    bool insert(int key, string value, TreeNode *&node);// helper
+
     // return the height of the AVL tree. The time complexity for getHeight should be O(1).
     int getHeight();
+
+    int getHeight(TreeNode *);// helper
+
+    void leftRotate(TreeNode *problem);
+
+    void rightRotate(TreeNode *problem);
+
+    void doubleLeftRotate(TreeNode *problem);
+    
+    void doubleRightRotate(TreeNode *problem);
+
+    int max(int left, int right);
 
     // return the total number of nodes (key/value pairs) in the AVL tree.
     // The time complexity for getSize should be O(1).
@@ -58,45 +90,13 @@ public:
     friend ostream &operator<<(ostream &os, const AVLTree &s);
     //*******************************************************************************************
 
-    /// @brief printing method for entire sequence, outputs all elements
-    /// 		ex: <4, 8, 15, 16, 23, 42>
+    /// @brief printing method for entire AVLTree, outputs all elements
     /// @param os the ostream to print to (ex: cout)
     void print(ostream &os) const;
 
-
-    // YOU CAN MODIFY the following private declarations as needed to implement your sequence class
 private:
     /// @brief private inner class for linked list nodes
     /// All data elements are public, since only class sequence can see SequenceNodes
-    class TreeNode
-    {
-    public:
-        int key;
-        string value;
-        int height;
-
-        TreeNode *right; // pointer to right Node.
-        TreeNode *left; // pointer to left Node.
-
-        TreeNode()
-        {
-            key = 0;
-            value = "";
-            height = 5;
-            right = nullptr;
-            left = nullptr;
-        }
-
-        /// @brief parameterized constructor, next and prev are set to nullptr and the
-        /// node's element is set to the given value
-        /// @param item value the node's element will be set to
-        TreeNode(int newKey, string newValue) : right(nullptr), left(nullptr), key(newKey), value (newValue)
-        {
-        }
-
-        bool insert(int key, string value, TreeNode *node);
-
-    };
 
     // MEMBER DATA.  These are the data items that each sequence object will contain.  For a
     // doubly-linked list, each sequence will have a head and tail pointer, and numElts
