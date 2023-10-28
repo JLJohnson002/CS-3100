@@ -16,12 +16,12 @@ AVLTree::AVLTree(const AVLTree &s)
 
     // copy root then left then right
     newTree.insert(s.root->key, s.root->value);
-
 }
 
-{ // Destructor
+// Destructor
 AVLTree::~AVLTree()
-  //   delete left then right then self
+//   delete left then right then self
+{
 }
 
 // Insert a new key/value pair into the tree.
@@ -170,6 +170,7 @@ int AVLTree::getHeight()
     return getHeight(root);
 }
 
+// getHeight helper
 int AVLTree::getHeight(TreeNode *cur)
 {
     if (cur == nullptr)
@@ -181,6 +182,8 @@ int AVLTree::getHeight(TreeNode *cur)
         return cur->height;
     }
 }
+
+// Function for getting the balance of a node
 int AVLTree::balance(TreeNode *cur)
 {
     int left;
@@ -206,6 +209,7 @@ int AVLTree::balance(TreeNode *cur)
     return left - right;
 }
 
+// Finds the max of two given numbers
 int AVLTree::max(int left, int right)
 {
     if (left > right)
@@ -218,22 +222,23 @@ int AVLTree::max(int left, int right)
     }
 }
 
-int AVLTree::getSize()
 // return the total number of nodes (key/value pairs) in the AVL tree.
 // The time complexity for getSize should be O(1).
+int AVLTree::getSize()
 {
     return numElts;
 }
 
-bool AVLTree::find(int findKey, string &putValue)
 // if the given key is found in the AVL tree,
 // this function should return true and place the corresponding value in value.
 // Otherwise this function should return false (and the value in value can be anything).
 // The time complexity for find should be O(log2 n).
+bool AVLTree::find(int findKey, string &putValue)
 {
     return find(findKey, putValue, root);
 }
 
+// Find helper
 bool AVLTree::find(int findKey, string &putValue, TreeNode *&cur)
 {
     if (findKey == cur->key)
@@ -261,6 +266,8 @@ vector<string> AVLTree::findRange(int lowkey, int highkey)
 // there will be one value in the vector. If no matching key/value pairs are found,
 // the function should return an empty vector.
 {
+    lowkey++;
+    highkey++;
 }
 
 // Place code for printing sequence here
