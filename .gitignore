@@ -9,3 +9,4 @@ Project03/build/Debug/sequence.o
 *.o
 *.exe
 *.json
+.vscode/launch.json

@@ -12,14 +12,15 @@ AVLTree::AVLTree()
 AVLTree::AVLTree(const AVLTree &s)
 // Copies a given Tree
 {
-    // FIXME
     AVLTree newTree;
-    newTree.insert(s.root->key, s.root->value);
+
     // copy root then left then right
+    newTree.insert(s.root->key, s.root->value);
+
 }
 
-AVLTree::~AVLTree()
 { // Destructor
+AVLTree::~AVLTree()
   //   delete left then right then self
 }
 
@@ -33,7 +34,7 @@ bool AVLTree::insert(int newKey, string newValue)
 {
     return insert(newKey, newValue, root);
 }
-
+// Insert helper that receives node
 bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
 {
     bool inserted = false;
@@ -73,7 +74,7 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
 
     cur->height = max(leftChildHeight, rightChildHeight) + 1;
 
-    // int balance = cur->left->height - cur->right->height;
+    // Find balance
     int bal = balance(cur);
 
     if (bal < -1) // negative unbalanced
@@ -99,36 +100,55 @@ bool AVLTree::insert(int newKey, string newValue, TreeNode *&cur)
         }
     }
 
-    leftChildHeight = getHeight(cur->left);
-
-    rightChildHeight = getHeight(cur->right);
-
-    cur->height = max(leftChildHeight, rightChildHeight) + 1;
-
     return inserted;
 
 } /// ****************** END OF INSERT ***************************************************************
 
 void AVLTree::leftRotate(TreeNode *&problem)
 { // Do this if balance is negative
-    TreeNode *problemTemp = new TreeNode(problem->key, problem->value);
+    // Create Temp node pointers
     TreeNode *hook = problem->right;
     TreeNode *hookTemp = hook->left;
 
+    // Move pointers
+    hook->left = problem;
+    problem->right = hookTemp;
+
+    // Update heights, problem is now lowest so change it first
+    int leftChildHeight = getHeight(problem->left);
+    int rightChildHeight = getHeight(problem->right);
+    problem->height = max(leftChildHeight, rightChildHeight) + 1;
+
+    // Then change hook height
+    leftChildHeight = getHeight(hook->left);
+    rightChildHeight = getHeight(hook->right);
+    hook->height = max(leftChildHeight, rightChildHeight) + 1;
+
+    // Finally change problem pointer back to top of tree section
     problem = hook;
-    problem->left=problemTemp;
-    hook->left = problemTemp;
-    problem->right = hook->right;
-    problem->left->right = hookTemp;
 }
 
 void AVLTree::rightRotate(TreeNode *&problem)
 { // Do this if balance is positive
+    // Create Temp node pointers
     TreeNode *hook = problem->left;
     TreeNode *hookTemp = hook->right;
 
+    // Move pointers
     hook->right = problem;
     problem->left = hookTemp;
+
+    // Update heights, problem is now lowest so change it first
+    int leftChildHeight = getHeight(problem->left);
+    int rightChildHeight = getHeight(problem->right);
+    problem->height = max(leftChildHeight, rightChildHeight) + 1;
+
+    // Then change hook height
+    leftChildHeight = getHeight(hook->left);
+    rightChildHeight = getHeight(hook->right);
+    hook->height = max(leftChildHeight, rightChildHeight) + 1;
+
+    // Finally change problem pointer back to top of tree section
     problem = hook;
 }
 
@@ -150,6 +170,17 @@ int AVLTree::getHeight()
     return getHeight(root);
 }
 
+int AVLTree::getHeight(TreeNode *cur)
+{
+    if (cur == nullptr)
+    {
+        return -1;
+    }
+    else
+    {
+        return cur->height;
+    }
+}
 int AVLTree::balance(TreeNode *cur)
 {
     int left;
@@ -172,20 +203,7 @@ int AVLTree::balance(TreeNode *cur)
     {
         right = cur->right->height;
     }
-    cout<< left-right<< endl;
-    return left-right;
-}
-
-int AVLTree::getHeight(TreeNode *cur)
-{
-    if (cur == nullptr)
-    {
-        return -1;
-    }
-    else
-    {
-        return cur->height;
-    }
+    return left - right;
 }
 
 int AVLTree::max(int left, int right)
@@ -207,12 +225,34 @@ int AVLTree::getSize()
     return numElts;
 }
 
-bool AVLTree::find(int key, string &value)
+bool AVLTree::find(int findKey, string &putValue)
 // if the given key is found in the AVL tree,
 // this function should return true and place the corresponding value in value.
 // Otherwise this function should return false (and the value in value can be anything).
 // The time complexity for find should be O(log2 n).
 {
+    return find(findKey, putValue, root);
+}
+
+bool AVLTree::find(int findKey, string &putValue, TreeNode *&cur)
+{
+    if (findKey == cur->key)
+    {
+        cur->value = putValue;
+        return true;
+    }
+    else if (findKey < cur->key)
+    {
+        return find(findKey, putValue, cur->left);
+    }
+    else if (findKey > cur->key)
+    {
+        return find(findKey, putValue, cur->right);
+    }
+    else
+    {
+        return false;
+    }
 }
 
 vector<string> AVLTree::findRange(int lowkey, int highkey)
@@ -226,19 +266,15 @@ vector<string> AVLTree::findRange(int lowkey, int highkey)
 // Place code for printing sequence here
 void AVLTree::print(ostream &os) const
 { // Prints all nodes in a sequence
+    TreeNode *cur = root;
     if (root == nullptr)
     {
         os << "empty tree";
     }
     else
-    { // Print right center left
-        TreeNode *cur = root;
+    { // Print right self left
 
-        if (cur->right != nullptr)
-        {
-            os << cur->right;
-        }
-        else
+        if (cur->right == nullptr && cur->left == nullptr)
         {
             int indent = cur->height;
             string indentSpace = "";
@@ -247,23 +283,13 @@ void AVLTree::print(ostream &os) const
                 indentSpace += "    ";
             }
             os << indentSpace << cur->key << ", " << cur->value;
-            if (cur->left == nullptr)
-            {
-                return;
-            }
-            else
-            {
-
-                os << cur->left;
-            }
         }
-
-        // print(cur);
-        // print(cur->right);
-        // os << cur->elt << ", ";
-        // cur = cur->next;
+        else
+        {
+            os << cur->right;
+            os << cur->left;
+        }
     }
-    // os << cur->elt << endl;
 }
 
 // Don't modify, do the output in the print() method

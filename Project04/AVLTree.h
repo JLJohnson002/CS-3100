@@ -76,7 +76,9 @@ public:
     // this function should return true and place the corresponding value in value.
     // Otherwise this function should return false (and the value in value can be anything).
     // The time complexity for find should be O(log2 n).
-    bool find(int key, string &value);
+    bool find(int findKey, string &putValue);
+
+    bool find(int findKey, string &putValue, TreeNode *&cur);
 
     // This function should return a C++ vector of strings containing all of the values in the tree
     // with keys ≥ lowkey and ≤ highkey. For each key found in the given range,
