@@ -10,3 +10,5 @@ Project03/build/Debug/sequence.o
 *.exe
 *.json
 .vscode/launch.json
+.vscode/launch.json
+.vscode/settings.json
