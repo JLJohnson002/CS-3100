@@ -12,7 +12,7 @@ public:
     public:
         int key;
 
-        TrieNode *97;// Int pointers dont work
+        // TrieNode *97;// Int pointers dont work
         TrieNode *a;// char pointers do work
         TrieNode *right; // string pointer works
 
@@ -37,8 +37,7 @@ public:
     // Deconstructor
     ~Trie();
 
-    bool insert(int key, string value);
-
+    bool insert(string word);
 private:
     // Components of a Trie
     TrieNode *root;

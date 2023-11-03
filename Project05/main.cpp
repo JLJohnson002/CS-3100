@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Trie.h"
+#include "trie.h"
 using namespace std;
 
 int main()
