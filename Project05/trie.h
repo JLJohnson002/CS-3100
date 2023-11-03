@@ -11,7 +11,7 @@ public:
     {
     public:
         int key;
-
+        // FIXME
         // TrieNode *97;// Int pointers dont work
         TrieNode *a;// char pointers do work
         TrieNode *right; // string pointer works
@@ -22,8 +22,9 @@ public:
 
             for (int i = 97; i < 123; i++)
             {
-                char child = (char)i;
-                TrieNode *child = nullptr;
+                // FIXME
+                // char child = (char)i;
+                // TrieNode *child = nullptr;
             }
         }
     };
