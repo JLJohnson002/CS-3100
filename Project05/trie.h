@@ -10,20 +10,13 @@ public:
     class TrieNode
     {
     public:
-        int key;
-
-        // TrieNode *97;// Int pointers dont work
-        TrieNode *a;// char pointers do work
-        TrieNode *right; // string pointer works
-
-        TrieNode(int newKey)
+        bool endOfWord = false;
+        TrieNode *children[26];
+        TrieNode()
         {
-            key = newKey;
-
-            for (int i = 97; i < 123; i++)
+            for (int i = 0; i < 26; i++)
             {
-                char child = (char)i;
-                TrieNode *child = nullptr;
+                children[i] = nullptr;
             }
         }
     };
@@ -38,8 +31,11 @@ public:
     ~Trie();
 
     bool insert(string word);
+
 private:
     // Components of a Trie
-    TrieNode *root;
+    // TrieNode *root;
+    // FIXME can i initilize the root here instead of the .cpp file
+    TrieNode *root = new TrieNode();
     int numElts;
 };

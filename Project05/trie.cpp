@@ -2,26 +2,45 @@
 
 Trie::Trie()
 {
-    root = nullptr;
+    // TrieNode *root = new TrieNode();
     numElts = 0;
 }
 
-bool Trie::insert(string word)
+Trie::Trie(const Trie &s)
 {
-    for (char letter : word)
-    {
-        insert((int)letter);
-    }
 }
 
-bool Trie::insert(int charInt)
+    Trie::~Trie();
+
+
+bool Trie::insert(string word)
 {
     TrieNode *cur = root;
-    if (root == nullptr)
+
+    for (int i = 0; i < word.length(); i++)
     {
-        root = new TrieNode(charInt);
-        numElts ++;
+        char letter = word[i];
+        // FIXME can i put word[i] in (int)letter -- (int)word[i]
+        int asciiConversion = (int)letter - 'a';
+
+        if (cur->children[asciiConversion] == nullptr)
+        {
+            cur->children[asciiConversion] = new TrieNode();
+            cur = cur->children[asciiConversion];
+        }
+        else
+        {
+            cur = cur->children[asciiConversion];
+        }
+    }
+    if (cur->endOfWord)
+    {
+        return false;
+    }
+    else
+    {
+        cur->endOfWord = true;
+        numElts++;
         return true;
     }
-    return false;
 }
