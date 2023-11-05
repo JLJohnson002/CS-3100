@@ -10,8 +10,9 @@ Trie::Trie(const Trie &s)
 {
 }
 
-    Trie::~Trie();
-
+Trie::~Trie()
+{
+}
 
 bool Trie::insert(string word)
 {
