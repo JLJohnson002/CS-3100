@@ -25,10 +25,10 @@ public:
     Trie();
 
     // Copy constructor
-    Trie(const Trie &s);
+    // Trie(const Trie &s);
 
     // Deconstructor
-    ~Trie();
+    // ~Trie();
 
     bool insert(string word);
 

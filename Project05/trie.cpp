@@ -6,19 +6,19 @@ Trie::Trie()
     numElts = 0;
 }
 
-Trie::Trie(const Trie &s)
-{
-}
+// Trie::Trie(const Trie &s)
+// {
+// }
 
-Trie::~Trie()
-{
-}
+// Trie::~Trie()
+// {
+// }
 
 bool Trie::insert(string word)
 {
     TrieNode *cur = root;
-
-    for (int i = 0; i < word.length(); i++)
+    //FIXME integer to long conversion
+    for (unsigned int i = 0; i < word.length(); i++)
     {
         char letter = word[i];
         // FIXME can i put word[i] in (int)letter -- (int)word[i]
