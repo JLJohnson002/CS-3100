@@ -1,3 +1,7 @@
+// 1. Jimmy Johnson
+// 2. 11/05/2023
+// 3. Project 5 Uncompressed Alphabet Trie
+
 #pragma once
 
 #include <iostream>
@@ -32,10 +36,17 @@ public:
 
     bool insert(string word);
 
+    int count();
+
+    int getSize();
+
+    bool find(string);
+
 private:
     // Components of a Trie
     // TrieNode *root;
     // FIXME can i initilize the root here instead of the .cpp file
     TrieNode *root = new TrieNode();
-    int numElts;
+    int numWords;
+    int numNodes;
 };

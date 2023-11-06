@@ -1,8 +1,16 @@
+// 1. Jimmy Johnson
+// 2. 11/05/2023
+// 3. Project 5 Uncompressed Alphabet Trie
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "trie.h"
 using namespace std;
+
+// Used code from
+// https://www.udacity.com/blog/2021/05/how-to-read-from-a-file-in-cpp.html
+// to intake from a file
 
 int main()
 {
@@ -10,21 +18,41 @@ int main()
     string alphabet = "abcdefghijklmnopqrstuvwxyz";
     for (char letter : alphabet)
     {
-        cout << letter << " - " << (int)letter << " - "<<(int)letter - 'a' << endl;
+        cout << letter << " - " << (int)letter << " - " << (int)letter - 'a' << endl;
     }
 
-    ifstream myfile("C:dictionary.txt");
+    ifstream myfile("dictionary.txt");
     string word;
     cout << "start" << endl;
     if (myfile.is_open())
     {
-        while (myfile.good())
+        while (myfile)
         {
             myfile >> word;
             test1.insert(word);
         }
     }
-
+    cout << "words = " << test1.count() << endl;
+    cout << "nodes = " << test1.getSize() << endl;
+    cout << test1.find("a") << endl;
+    if (test1.find("a"))
+    {
+        cout << "found 'a'" << endl;
+    }
+    else
+    {
+        cout << "did not find 'a'" << endl;
+    }
+    if (test1.find("aaaaaaa"))
+    {
+        cout << "found 'aaaaaa'" << endl;
+    }
+    else
+    {
+        cout << "did not find 'aaaaaa'" << endl;
+    }
+    cout << test1.find("abracadabra") << endl;
+    cout << test1.find("aaaaaaaaaaa") << endl;
     cout << "done" << endl;
 }
 // char myChar = 'c';
