@@ -44,9 +44,9 @@ public:
 
 private:
     // Components of a Trie
-    // TrieNode *root;
+    TrieNode *root;
     // FIXME can i initilize the root here instead of the .cpp file
-    TrieNode *root = new TrieNode();
+    // TrieNode *root = new TrieNode();
     int numWords;
     int numNodes;
 };

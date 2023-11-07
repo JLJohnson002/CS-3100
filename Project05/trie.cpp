@@ -6,7 +6,7 @@
 
 Trie::Trie()
 {
-    // TrieNode *root = new TrieNode();
+    root = new TrieNode();
     numWords = 0;
     numNodes = 1;
 }
