@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/05/2023
+// 2. 11/08/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include <iostream>
@@ -43,16 +43,16 @@ int main()
     {
         cout << "did not find 'a'" << endl;
     }
-    if (test1.find("aaaaaaa"))
+    if (test1.find("aa"))
     {
-        cout << "found 'aaaaaa'" << endl;
+        cout << "found 'aa'" << endl;
     }
     else
     {
-        cout << "did not find 'aaaaaa'" << endl;
+        cout << "did not find 'aa'" << endl;
     }
     cout << test1.find("abracadabra") << endl;
-    cout << test1.find("aaaaaaaaaaa") << endl;
+    cout << test1.find("aa") << endl;
     cout << "done" << endl;
 }
 // char myChar = 'c';

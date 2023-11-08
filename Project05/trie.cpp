@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/05/2023
+// 2. 11/08/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include "trie.h"
@@ -24,9 +24,7 @@ bool Trie::insert(string word)
     TrieNode *cur = root;
     for (unsigned int i = 0; i < word.length(); i++)
     {
-        char letter = word[i];
-        // FIXME can i put word[i] in (int)letter -- (int)word[i]
-        int asciiConversion = (int)letter - 'a';
+        int asciiConversion = (int)word[i] - 'a';
 
         if (cur->children[asciiConversion] == nullptr)
         {
@@ -66,9 +64,7 @@ bool Trie::find(string word)
     TrieNode *cur = root;
     for (unsigned int i = 0; i < word.length(); i++)
     {
-        char letter = word[i];
-        // FIXME can i put word[i] in (int)letter -- (int)word[i]
-        int asciiConversion = (int)letter - 'a';
+        int asciiConversion = (int)word[i] - 'a';
 
         if (cur->children[asciiConversion] == nullptr)
         {
@@ -79,12 +75,5 @@ bool Trie::find(string word)
             cur = cur->children[asciiConversion];
         }
     }
-    if (cur->endOfWord)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return cur->endOfWord;
 }

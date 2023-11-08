@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/05/2023
+// 2. 11/08/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #pragma once
@@ -45,8 +45,6 @@ public:
 private:
     // Components of a Trie
     TrieNode *root;
-    // FIXME can i initilize the root here instead of the .cpp file
-    // TrieNode *root = new TrieNode();
     int numWords;
     int numNodes;
 };
