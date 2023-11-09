@@ -32,7 +32,7 @@ public:
     Trie(const Trie &s);
 
     // Copy Helper
-    void copy(TrieNode *&from, TrieNode *&to);
+    void copy(const TrieNode * const &from, TrieNode *&to);
 
 
     // Destructor

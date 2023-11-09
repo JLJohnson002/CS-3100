@@ -21,11 +21,11 @@ Trie::Trie(const Trie &s)
     numNodes = s.numNodes;
     // FIXME
     // copy(s.root, this->root);
-    copy(this->root, s.root);
+    copy(s.root, this->root);
 }
 
 // Copy Helper
-void Trie::copy(TrieNode *&from, TrieNode *&to)
+void Trie::copy(const TrieNode * const &from, TrieNode *&to)
 {
     to = new TrieNode();
     to->endOfWord = from->endOfWord;
