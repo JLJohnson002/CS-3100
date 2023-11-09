@@ -135,6 +135,7 @@ int Trie::completeCount(string word)
 
     return countHelper(cur);
 }
+
 int Trie::countHelper(TrieNode *cur)
 {
     int count = 0;
@@ -152,6 +153,58 @@ int Trie::countHelper(TrieNode *cur)
     }
 
     return count;
+}
+
+// this function should return a C++ vector of strings
+// containing all of the words in the dictionary
+// that begin with the given input string.
+// For each word found in the trie, there will be one value in the vector.
+// If no matching words are found, the function should return an empty vector.
+// Example: The call resultVector = myTrie.complete("addr")
+// were called on a trie built with the wordlist.txt
+// file provided with this project should return a vector containing the strings:
+// {"address", "addressable", "addressed", "addressee",
+// "addressees", "addresses", "addressing"}.
+vector<string> Trie::complete(string word)
+{
+    TrieNode *cur = root;
+    vector<string> list;
+    for (unsigned int i = 0; i < word.length(); i++)
+    {
+        int asciiConversion = (int)word[i] - 'a';
+
+        if (cur->children[asciiConversion] == nullptr)
+        {
+            return list;
+        }
+        else
+        {
+            cur = cur->children[asciiConversion];
+        }
+    }
+
+    return completeHelper(cur, word);
+}
+vector<string> Trie::completeHelper(TrieNode *cur, string word)
+{
+    vector<string> list;
+
+    if (cur->endOfWord)
+    {
+        list.push_back(word);
+    }
+    for (int i = 0; i < 26; i++)
+    {
+        if (cur->children[i] != nullptr)
+        {
+            word += (char)(cur->children[i] + 'a');
+    vector<string> temp = completeHelper(cur->children[i], word);
+
+            list;
+        }
+    }
+
+    return list;
 }
 
 // trie1 = trie2 should remove all contents of trie1 (without memory leaks)

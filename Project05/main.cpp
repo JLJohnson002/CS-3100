@@ -26,6 +26,28 @@ int main()
             test1.insert(word);
         }
     }
+
+    vector<string> test;
+    test.push_back("one");
+    test.push_back("two");
+    test.push_back("three");
+    test.push_back("four");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Please enter a word prefix (or press enter to exit):  addr
     // There are 7 completions for the prefix 'addr'.  Show completions?  Yes
     // Completions
@@ -39,32 +61,34 @@ int main()
     // addressing
 
     // Please enter a word prefix (or press enter to exit):
-    while (true)
-    {
-        cout << "Please enter a word prefix (or press enter to exit): ";
-        string wordPrefix;
-        cin >> wordPrefix;
-        // FIXME
-        // if (cin.get() == '/n')
-        if (wordPrefix == "end")
-        {
-            break;
-        }
-        cout << "There are " << test1.completeCount(wordPrefix)
-             << " completions for the prefix '" << wordPrefix
-             << "'. Show completions? ";
-        string response;
-        cin >> response;
-        if (response == "yes")
-        {
-            cout << "-----------" << endl;
-            cout << "do the yes stuff here" << endl;
-        }
-        else
-        {
-            continue;
-        }
-    }
+    //*************************************FINAL*************************************
+    // while (true)
+    // {
+    //     cout << "Please enter a word prefix (or press enter to exit): ";
+    //     string wordPrefix;
+    //     cin >> wordPrefix;
+    //     // FIXME
+    //     // if (cin.get() == '/n')
+    //     if (wordPrefix == "end")
+    //     {
+    //         break;
+    //     }
+    //     cout << "There are " << test1.completeCount(wordPrefix)
+    //          << " completions for the prefix '" << wordPrefix
+    //          << "'. Show completions? ";
+    //     string response;
+    //     cin >> response;
+    //     if (response == "yes")
+    //     {
+    //         cout << "-----------" << endl;
+    //         cout << "do the yes stuff here" << endl;
+    //     }
+    //     else
+    //     {
+    //         continue;
+    //     }
+    // }
+    //*************************************FINAL*************************************
 }
 // cout << "start" << endl;
 // for (int i = 0; i < 3; i++)
