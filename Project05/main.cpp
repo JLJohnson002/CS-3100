@@ -15,46 +15,54 @@ using namespace std;
 int main()
 {
     Trie test1;
-    string alphabet = "abcdefghijklmnopqrstuvwxyz";
-    for (char letter : alphabet)
-    {
-        cout << letter << " - " << (int)letter << " - " << (int)letter - 'a' << endl;
-    }
+    test1.insert("test");
+    test1.insert("tester");
+    test1.insert("testing");
 
-    ifstream myfile("dictionary.txt");
-    string word;
-    cout << "start" << endl;
-    if (myfile.is_open())
-    {
-        while (myfile)
-        {
-            myfile >> word;
-            test1.insert(word);
-        }
-    }
-    cout << "words = " << test1.count() << endl;
-    cout << "nodes = " << test1.getSize() << endl;
-    cout << test1.find("a") << endl;
-    if (test1.find("a"))
-    {
-        cout << "found 'a'" << endl;
-    }
-    else
-    {
-        cout << "did not find 'a'" << endl;
-    }
-    if (test1.find("aa"))
-    {
-        cout << "found 'aa'" << endl;
-    }
-    else
-    {
-        cout << "did not find 'aa'" << endl;
-    }
-    cout << test1.find("abracadabra") << endl;
-    cout << test1.find("aa") << endl;
+    Trie test2 = Trie(test1);
     cout << "done" << endl;
 }
+// Trie test1;
+// string alphabet = "abcdefghijklmnopqrstuvwxyz";
+// for (char letter : alphabet)
+// {
+//     cout << letter << " - " << (int)letter << " - " << (int)letter - 'a' << endl;
+// }
+
+// ifstream myfile("dictionary.txt");
+// string word;
+// cout << "start" << endl;
+// if (myfile.is_open())
+// {
+//     while (myfile)
+//     {
+//         myfile >> word;
+//         test1.insert(word);
+//     }
+// }
+// cout << "words = " << test1.count() << endl;
+// cout << "nodes = " << test1.getSize() << endl;
+// cout << test1.find("a") << endl;
+// if (test1.find("a"))
+// {
+//     cout << "found 'a'" << endl;
+// }
+// else
+// {
+//     cout << "did not find 'a'" << endl;
+// }
+// if (test1.find("aa"))
+// {
+//     cout << "found 'aa'" << endl;
+// }
+// else
+// {
+//     cout << "did not find 'aa'" << endl;
+// }
+// cout << test1.find("abracadabra") << endl;
+// cout << test1.find("aa") << endl;
+// cout << "done" << endl;
+
 // char myChar = 'c';
 // int slot = (int)myChar - 'a'; // = 2
 

@@ -4,6 +4,7 @@
 
 #include "trie.h"
 
+// Constructor
 Trie::Trie()
 {
     root = new TrieNode();
@@ -11,13 +12,49 @@ Trie::Trie()
     numNodes = 1;
 }
 
-// Trie::Trie(const Trie &s)
-// {
-// }
+// Copy Constructor
+Trie::Trie(const Trie &s)
+{
+    root = new TrieNode();
+    root = s.root;
+    numWords = s.numWords;
+    numNodes = s.numNodes;
+    // FIXME
+    // copy(s.root, this->root);
+    copy(this->root, s.root);
+}
 
-// Trie::~Trie()
-// {
-// }
+// Copy Helper
+void Trie::copy(TrieNode *&from, TrieNode *&to)
+{
+    to = new TrieNode();
+    to->endOfWord = from->endOfWord;
+    for (int i = 0; i < 26; i++)
+    {
+        if (from->children[i] != nullptr)
+        {
+            copy(from->children[i], to->children[i]);
+        }
+    }
+}
+
+// Destructor
+Trie::~Trie()
+{
+    kill(root);
+}
+
+// Destructor Helper
+void Trie::kill(TrieNode *&cur)
+{
+    for (int i = 0; i < 26; i++)
+    {
+        if (cur->children[i]!=nullptr){
+            kill(cur->children[i]);
+        }
+    }
+    delete cur;
+}
 
 bool Trie::insert(string word)
 {

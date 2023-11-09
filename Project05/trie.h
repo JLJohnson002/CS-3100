@@ -28,11 +28,19 @@ public:
     // Constructor
     Trie();
 
-    // Copy constructor
-    // Trie(const Trie &s);
+    // Copy Constructor
+    Trie(const Trie &s);
 
-    // Deconstructor
-    // ~Trie();
+    // Copy Helper
+    void copy(TrieNode *&from, TrieNode *&to);
+
+
+    // Destructor
+    ~Trie();
+
+    // Destructor Helper
+    void kill(TrieNode *&cur);
+
 
     bool insert(string word);
 
