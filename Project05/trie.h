@@ -39,8 +39,7 @@ public:
     ~Trie();
 
     // Destructor Helper
-    void kill(TrieNode *&cur);
-
+    void kill(TrieNode *cur);
 
     bool insert(string word);
 
@@ -48,7 +47,13 @@ public:
 
     int getSize();
 
-    bool find(string);
+    bool find(string word);
+
+    int completeCount(string);
+
+    int countHelper(TrieNode *cur);
+    
+    Trie& operator=(const Trie &trie2);
 
 private:
     // Components of a Trie
