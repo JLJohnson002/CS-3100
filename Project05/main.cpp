@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/08/2023
+// 2. 11/14/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include <iostream>
@@ -27,148 +27,38 @@ int main()
         }
     }
 
-    vector<string> test;
-    test.push_back("one");
-    test.push_back("two");
-    test.push_back("three");
-    test.push_back("four");
+    while (true)
+    {
+        string wordPrefix;
+        string response;
 
+        cout << "Please enter a word prefix (or press enter to exit): ";
+        getline(cin, wordPrefix);
 
+        if (wordPrefix == "")
+        {
+            break;
+        }
 
+        cout << "There are " << test1.completeCount(wordPrefix)
+             << " completions for the prefix '" << wordPrefix
+             << "'. Show completions? ";
+        getline(cin, response);
 
+        if (response == "yes")
+        {
+            cout << "-----------" << endl;
+            test1.complete(wordPrefix);
 
-
-
-
-
-
-
-
-
-
-
-
-    // Please enter a word prefix (or press enter to exit):  addr
-    // There are 7 completions for the prefix 'addr'.  Show completions?  Yes
-    // Completions
-    // -----------
-    // address
-    // addressable
-    // addressed
-    // addressee
-    // addressees
-    // addresses
-    // addressing
-
-    // Please enter a word prefix (or press enter to exit):
-    //*************************************FINAL*************************************
-    // while (true)
-    // {
-    //     cout << "Please enter a word prefix (or press enter to exit): ";
-    //     string wordPrefix;
-    //     cin >> wordPrefix;
-    //     // FIXME
-    //     // if (cin.get() == '/n')
-    //     if (wordPrefix == "end")
-    //     {
-    //         break;
-    //     }
-    //     cout << "There are " << test1.completeCount(wordPrefix)
-    //          << " completions for the prefix '" << wordPrefix
-    //          << "'. Show completions? ";
-    //     string response;
-    //     cin >> response;
-    //     if (response == "yes")
-    //     {
-    //         cout << "-----------" << endl;
-    //         cout << "do the yes stuff here" << endl;
-    //     }
-    //     else
-    //     {
-    //         continue;
-    //     }
-    // }
-    //*************************************FINAL*************************************
+            for (string each : test1.wordList)
+            {
+                cout << each << endl;
+            }
+            cout << endl;
+        }
+        else
+        {
+            continue;
+        }
+    }
 }
-// cout << "start" << endl;
-// for (int i = 0; i < 3; i++)
-// {
-
-// Trie test2;
-// test2.insert("test");
-// test2.insert("tester");
-// test2.insert("testing");
-// test1 = test1;
-// cout << "comp count armor = " << test1.completeCount("a") << endl;
-// }
-// cout << "end" << endl;
-// string alphabet = "abcdefghijklmnopqrstuvwxyz";
-// for (char letter : alphabet)
-// {
-//     cout << letter << " - " << (int)letter << " - " << (int)letter - 'a' << endl;
-// }
-
-// cout << "words = " << test1.count() << endl;
-// cout << "nodes = " << test1.getSize() << endl;
-// cout << test1.find("a") << endl;
-// if (test1.find("a"))
-// {
-//     cout << "found 'a'" << endl;
-// }
-// else
-// {
-//     cout << "did not find 'a'" << endl;
-// }
-// if (test1.find("aa"))
-// {
-//     cout << "found 'aa'" << endl;
-// }
-// else
-// {
-//     cout << "did not find 'aa'" << endl;
-// }
-// cout << test1.find("abracadabra") << endl;
-// cout << test1.find("aa") << endl;
-// cout << "done" << endl;
-// char myChar = 'c';
-// int slot = (int)myChar - 'a'; // = 2
-
-// cout << slot << endl;
-// cout << (int)'a' << endl; // = 97
-// cout << (int)'c' << endl; // = 99
-// cout << (int)'d' << endl; // = 100
-// cout << (int)'~' << endl; // = 126
-// cout << (int)'$' << endl; // = 36
-// cout << (char)100 << endl
-//      << endl; // = 100 D
-// cout << endl;
-// test1.insert("test");
-// test1.insert("tester");
-// test1.insert("testing");
-// test1.insert("testing");
-// test1.insert("a");
-// test1.insert("b");
-// test1.insert("c");
-// test1.insert("d");
-// test1.insert("e");
-// test1.insert("f");
-// test1.insert("g");
-// test1.insert("h");
-// test1.insert("i");
-// test1.insert("j");
-// test1.insert("k");
-// test1.insert("l");
-// test1.insert("m");
-// test1.insert("n");
-// test1.insert("o");
-// test1.insert("p");
-// test1.insert("q");
-// test1.insert("r");
-// test1.insert("s");
-// test1.insert("t");
-// test1.insert("u");
-// test1.insert("v");
-// test1.insert("w");
-// test1.insert("x");
-// test1.insert("y");
-// test1.insert("z");

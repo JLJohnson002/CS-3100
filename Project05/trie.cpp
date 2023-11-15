@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/08/2023
+// 2. 11/14/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include "trie.h"
@@ -16,7 +16,6 @@ Trie::Trie()
 Trie::Trie(const Trie &s)
 {
     root = new TrieNode();
-    // root = s.root;
     numWords = s.numWords;
     numNodes = s.numNodes;
     copy(s.root, this->root);
@@ -55,6 +54,9 @@ void Trie::kill(TrieNode *cur)
     delete cur;
 }
 
+/// @brief Inserts a given word into a trie
+/// @param word 
+/// @return true if inserted, false otherwise
 bool Trie::insert(string word)
 {
     TrieNode *cur = root;
@@ -85,16 +87,21 @@ bool Trie::insert(string word)
     }
 }
 
+// Returns the number of words in a trie
 int Trie::count()
 {
     return numWords;
 }
 
+// Returns the number of nodes in a trie
 int Trie::getSize()
 {
     return numNodes;
 }
 
+/// @brief 
+/// @param word 
+/// @return 
 bool Trie::find(string word)
 {
     TrieNode *cur = root;
@@ -155,27 +162,22 @@ int Trie::countHelper(TrieNode *cur)
     return count;
 }
 
-// this function should return a C++ vector of strings
-// containing all of the words in the dictionary
-// that begin with the given input string.
-// For each word found in the trie, there will be one value in the vector.
-// If no matching words are found, the function should return an empty vector.
-// Example: The call resultVector = myTrie.complete("addr")
-// were called on a trie built with the wordlist.txt
-// file provided with this project should return a vector containing the strings:
-// {"address", "addressable", "addressed", "addressee",
-// "addressees", "addresses", "addressing"}.
+// Returns a vector containing all the strings that begin with the input string
 vector<string> Trie::complete(string word)
 {
     TrieNode *cur = root;
-    vector<string> list;
+    while (!wordList.empty())
+    {
+        wordList.pop_back();
+    }
+
     for (unsigned int i = 0; i < word.length(); i++)
     {
         int asciiConversion = (int)word[i] - 'a';
 
         if (cur->children[asciiConversion] == nullptr)
         {
-            return list;
+            return wordList;
         }
         else
         {
@@ -185,30 +187,28 @@ vector<string> Trie::complete(string word)
 
     return completeHelper(cur, word);
 }
-vector<string> Trie::completeHelper(TrieNode *cur, string word)
+// Recursive helper to complete() function
+vector<string> Trie::completeHelper(TrieNode *cur, string oldWord)
 {
-    vector<string> list;
 
     if (cur->endOfWord)
     {
-        list.push_back(word);
+        wordList.push_back(oldWord);
     }
+
     for (int i = 0; i < 26; i++)
     {
         if (cur->children[i] != nullptr)
         {
-            word += (char)(cur->children[i] + 'a');
-    vector<string> temp = completeHelper(cur->children[i], word);
-
-            list;
+            string newWord = oldWord + (char)(i + 'a');
+            completeHelper(cur->children[i], newWord);
         }
     }
 
-    return list;
+    return wordList;
 }
 
-// trie1 = trie2 should remove all contents of trie1 (without memory leaks)
-// and make an independent copy of trie2 in trie1.
+// Removes all contents of trie1 and makes an independent copy of trie 2 in trie1
 Trie &Trie::operator=(const Trie &trie2)
 {
     kill(root);
