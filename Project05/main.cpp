@@ -1,5 +1,5 @@
 // 1. Jimmy Johnson
-// 2. 11/14/2023
+// 2. 11/15/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include <iostream>
@@ -16,7 +16,7 @@ int main()
 {
     Trie test1;
 
-    ifstream myfile("dictionary.txt");
+    ifstream myfile("wordlist_windows.txt");
     string word;
     if (myfile.is_open())
     {

@@ -1,10 +1,10 @@
 // 1. Jimmy Johnson
-// 2. 11/14/2023
+// 2. 11/15/2023
 // 3. Project 5 Uncompressed Alphabet Trie
 
 #include "trie.h"
 
-// Constructor
+/// @brief Constructor
 Trie::Trie()
 {
     root = new TrieNode();
@@ -12,7 +12,8 @@ Trie::Trie()
     numNodes = 1;
 }
 
-// Copy Constructor
+/// @brief Copy Constructor
+/// @param s reference to a trie
 Trie::Trie(const Trie &s)
 {
     root = new TrieNode();
@@ -21,7 +22,9 @@ Trie::Trie(const Trie &s)
     copy(s.root, this->root);
 }
 
-// Copy Helper
+/// @brief Copy Helper
+/// @param from reference to constant pointer to constant trie node
+/// @param to reference to a pointer to a trie node
 void Trie::copy(const TrieNode *const &from, TrieNode *&to)
 {
     to = new TrieNode();
@@ -35,13 +38,14 @@ void Trie::copy(const TrieNode *const &from, TrieNode *&to)
     }
 }
 
-// Destructor
+/// @brief Destructor
 Trie::~Trie()
 {
     kill(root);
 }
 
-// Destructor Helper
+/// @brief Destructor Helper
+/// @param cur pointer to trie node
 void Trie::kill(TrieNode *cur)
 {
     for (int i = 0; i < 26; i++)
@@ -87,21 +91,23 @@ bool Trie::insert(string word)
     }
 }
 
-// Returns the number of words in a trie
+/// @brief Getter function for the number of words in a trie
+/// @return numWords (number of words)
 int Trie::count()
 {
     return numWords;
 }
 
-// Returns the number of nodes in a trie
+/// @brief Getter function for the number of nodes in a trie
+/// @return numNodes (number of nodes)
 int Trie::getSize()
 {
     return numNodes;
 }
 
-/// @brief 
-/// @param word 
-/// @return 
+/// @brief Searches a trie for the given word 
+/// @param word A given word to look for
+/// @return true if found, false otherwise
 bool Trie::find(string word)
 {
     TrieNode *cur = root;
@@ -121,8 +127,9 @@ bool Trie::find(string word)
     return cur->endOfWord;
 }
 
-// this function should return the number of words in the dictionary that begin with
-// the given input string. If no matching words are found, the function should return zero.
+/// @brief Finds the number of words starting with a given string
+/// @param word string given by the user
+/// @return The number of words that start with the given string
 int Trie::completeCount(string word)
 {
     TrieNode *cur = root;
@@ -143,6 +150,9 @@ int Trie::completeCount(string word)
     return countHelper(cur);
 }
 
+/// @brief Recursive helper function for completeCount
+/// @param cur pointer to a trie node
+/// @return the number of words found after the given string
 int Trie::countHelper(TrieNode *cur)
 {
     int count = 0;
@@ -162,7 +172,9 @@ int Trie::countHelper(TrieNode *cur)
     return count;
 }
 
-// Returns a vector containing all the strings that begin with the input string
+/// @brief Searches a trie for a given string and returns all words with that prefix
+/// @param word string provided by user
+/// @return vector of strings of all the words starting with the given string
 vector<string> Trie::complete(string word)
 {
     TrieNode *cur = root;
@@ -187,7 +199,11 @@ vector<string> Trie::complete(string word)
 
     return completeHelper(cur, word);
 }
-// Recursive helper to complete() function
+
+/// @brief recursive helper function for complete
+/// @param cur pointer to a trie node
+/// @param oldWord string
+/// @return wordList vector of strings
 vector<string> Trie::completeHelper(TrieNode *cur, string oldWord)
 {
 
@@ -208,7 +224,9 @@ vector<string> Trie::completeHelper(TrieNode *cur, string oldWord)
     return wordList;
 }
 
-// Removes all contents of trie1 and makes an independent copy of trie 2 in trie1
+/// @brief Removes all contents of a trie and makes a copy of trie 2 in the first trie
+/// @param trie2 reference to a trie
+/// @return reference to a trie
 Trie &Trie::operator=(const Trie &trie2)
 {
     kill(root);
