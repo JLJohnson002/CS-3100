@@ -1,6 +1,6 @@
 #include "shuffle.h"
 
-#include <iostream> 
+#include <iostream>
 #include <array>
 
 int main()
@@ -20,3 +20,11 @@ int main()
 
     return 0;
 }
+/*
+code hashtable
+code database
+put hashtable in database
+make main file
+main file control database
+database control hashtable
+*/
