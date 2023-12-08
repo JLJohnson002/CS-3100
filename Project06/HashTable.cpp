@@ -8,7 +8,7 @@ HashTable::HashTable()
 {
 }
 
-bool HashTable::insert(int key, int indes, int &collisions)
+bool HashTable::insert(int key, int index, int &collisions)
 {
 }
 

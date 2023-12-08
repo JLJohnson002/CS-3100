@@ -13,18 +13,20 @@ class HashTable
 {
 private:
     // Compontents of a Hash Table
+    
 
 public:
     // Constructor
     HashTable();
 
-    bool insert(int key, int indes, int &collisions);
+    bool insert(int key, int index, int &collisions);
 
     bool remove(int key);
 
     bool find(int key, int &index, int &collisions);
 
     float alpha();
+    // Alpha = n/N
 
     void print(ostream &os) const;
 
