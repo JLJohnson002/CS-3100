@@ -1,4 +1,4 @@
-#include "tree.h"
+#include "AVLTree.h"
 #include <vector>
 
 
@@ -46,11 +46,11 @@ bool AVLTree::insert(int key, string value)
 
     if (key > cur->key)
     {
-        cur->right->insert(key, value, cur->right);
+        // cur->right->insert(key, value, cur->right);
     }
     else if (key < cur->key)
     {
-        cur->left.insert(key, value);
+        // cur->left.insert(key, value);
     }
     else
     {
