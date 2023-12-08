@@ -6,6 +6,11 @@
 
 #include <iostream>
 #include <vector>
+#include <array>
+
+#include "Slot.h"
+#include "Record.h"
+#define MAXHASH 20
 
 using namespace std;
 
@@ -13,7 +18,9 @@ class HashTable
 {
 private:
     // Compontents of a Hash Table
-    
+    Slot hashTable[MAXHASH];
+    int collisions;
+    int probeOrder[];
 
 public:
     // Constructor
