@@ -8,28 +8,33 @@
 
 HashTable::HashTable()
 {
+    filledSlots = 0;
     probeOrder = makeShuffledArray();
 }
 
 bool HashTable::insert(int key, int index, int &collisions)
 {
+
     if (!find(key, index, collisions))
     {
-        unsigned int hash = jsHash(key);
+        collisions = 0;
+        unsigned int hash = jsHash(key) % MAXHASH;
 
         if (hashTable[hash].isEmpty())
         {
             hashTable[hash].load(key, index);
+            filledSlots++;
             return true;
         }
         else
         {
-            for (int i = 0; i < MAXHASH; i++)
+            for (size_t i = 0; i < MAXHASH; i++)
             {
                 collisions++;
-                if (hashTable[hash+probeOrder[i]].isEmpty())
+                if (hashTable[hash + probeOrder[i]].isEmpty())
                 {
-                    hashTable[hash+probeOrder[i]].load(key, index);
+                    hashTable[hash + probeOrder[i]].load(key, index);
+                    filledSlots++;
                     return true;
                 }
             }
@@ -38,32 +43,91 @@ bool HashTable::insert(int key, int index, int &collisions)
     }
     else
     {
+        cout << "no insert"<< endl;
         return false;
     }
 }
 
 bool HashTable::remove(int key)
 {
+    unsigned int hash = jsHash(key) % MAXHASH;
+
+    if (hashTable[hash].getKey() == key)
+    {
+        hashTable[hash].load(-1, -1);
+        hashTable[hash].kill();
+        filledSlots--;
+        return true;
+    }
+    else
+    {
+        for (size_t i = 0; i < MAXHASH; i++)
+        {
+            if (hashTable[hash + probeOrder[i]].getKey() == key)
+            {
+                hashTable[hash].load(-1, -1);
+                hashTable[hash].kill();
+                filledSlots--;
+                return true;
+            }
+            if (hashTable[hash + probeOrder[i]].isEmptySinceStart())
+            {
+                return false;
+            }
+        }
+        return false;
+    }
 }
 
 bool HashTable::find(int key, int &index, int &collisions)
 {
+    unsigned int hash = jsHash(key) % MAXHASH;
+    collisions = 0;
+
+    if (hashTable[hash].getKey() == key)
+    {
+        index = hashTable[hash].getIndex();
+        return true;
+    }
+    else
+    {
+        for (size_t i = 0; i < MAXHASH; i++)
+        {
+            collisions++;
+            if (hashTable[hash + probeOrder[i]].getKey() == key)
+            {
+                index = hashTable[hash = probeOrder[i]].getIndex();
+                return true;
+            }
+            if (hashTable[hash + probeOrder[i]].isEmptySinceStart())
+            {
+                return false;
+            }
+        }
+        return false;
+    }
 }
 
 float HashTable::alpha()
 {
+    return filledSlots / MAXHASH;
 }
 
 void HashTable::print(ostream &os) const
 {
-    /*
-    HashTable contents:
-    HashTable Slot 9: Key = 112233, Index = 2
-    HashTable Slot 4: Key = 223344, Index = 0
-    HashTable Slot 2: Key = 334455, Index = 1
-    */
+    os << "HashTable Contents:" << endl;
+    for (int i = 0; i < MAXHASH; i++)
+    {
+        if (hashTable[i].isNormal())
+        {
+            os << "HashTable Slot " << i << ": Key = " << hashTable[i].getKey()
+               << ", Index = " << hashTable[i].getIndex() << endl;
+        }
+    }
 }
 
 ostream &operator<<(ostream &os, const HashTable &s)
 {
+    s.print(os);
+    return os;
 }

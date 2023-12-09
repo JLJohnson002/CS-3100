@@ -19,7 +19,8 @@ class HashTable
 private:
     // Compontents of a Hash Table
     Slot hashTable[MAXHASH];
-    array<int, MAXHASH-1> probeOrder;
+    array<unsigned int, MAXHASH-1> probeOrder;
+    float filledSlots;
 
 public:
     // Constructor
@@ -31,8 +32,9 @@ public:
 
     bool find(int key, int &index, int &collisions);
 
+    Slot getSlot();
+
     float alpha();
-    // Alpha = n/N
 
     void print(ostream &os) const;
 

@@ -9,4 +9,4 @@ const unsigned int N = 20;
 
 /// @brief creates an array with values 1 - N in random order
 /// @return shuffled array
-array<int, N - 1> makeShuffledArray();
+array<unsigned int, N - 1> makeShuffledArray();

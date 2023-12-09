@@ -1,4 +1,3 @@
-#pragma once
 
 // A bitwise hash function written by Justin Sobel
 // Code adapted from http://www.partow.net/programming/hashfunctions/#RSHashFunction

@@ -1,24 +1,29 @@
-#include "shuffle.h"
+#include "HashTable.h"
+#include "Database.h"
 
 #include <iostream>
 #include <array>
+using namespace std;
 
 int main()
 {
-    array arrayShuffle = makeShuffledArray(); // you may have to say array<unsigned int, N> if compiler gives errors
+    int collisions = 0;
 
-    cout << "shuffled elements:";
-    for (const int& number : arrayShuffle)
-    {
-        // this is just fancy loop syntax where the variable number loops through each element
-        cout << ' ' << number;
-    }
-    cout << '\n';
+    HashTable test;
 
-    // example output:
-    // shuffled elements: 5 2 10 9 16 8 13 17 11 1 12 3 14 15 7 4 6 18 19
+    test.insert(112233, 2, collisions);
+    cout << "after first " << collisions << endl;
+    test.insert(112233, 0, collisions);
+    cout << "after second " << collisions << endl;
+    test.insert(334455, 1, collisions);
 
-    return 0;
+    cout << test.alpha() << endl;
+    cout << collisions << endl;
+
+    cout << test;
+    Database test1;
+
+
 }
 /*
 code hashtable

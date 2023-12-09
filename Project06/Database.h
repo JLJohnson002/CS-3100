@@ -15,8 +15,9 @@ class Database
 {
 private:
     // Compontents of a Database
-    HashTable indexTable;
+    HashTable hashTable;
     vector<Record> recordStore;
+    float filledSlots;
 
 public:
     // Constructor

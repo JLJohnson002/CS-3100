@@ -70,11 +70,5 @@ public:
 		os << me.getName() << " (U" << setw(8) << setfill('0') << me.getUID() << "): " << me.getYear();
 		return os;
 	}
-
-	// No destructor is needed as Records don't use any dynamically
-	// allocated memory
-	~Record()
-	{
-	}
 };
 
