@@ -8,21 +8,14 @@
 
 HashTable::HashTable()
 {
-    int collisions = 0;
-
-    for (int i = 0; i < MAXHASH; i++)
-    {
-        hashTable[i] = Slot(); // FIXME do i need this or does it initalize in the .h
-    }
-    // int makeShuffledArray()// FIXME; 
-    int probeOrder[].makeShuffledArray();
+    probeOrder = makeShuffledArray();
 }
 
 bool HashTable::insert(int key, int index, int &collisions)
 {
     if (!find(key, index, collisions))
     {
-        int hash = jsHash(key);
+        unsigned int hash = jsHash(key);
 
         if (hashTable[hash].isEmpty())
         {

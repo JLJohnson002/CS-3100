@@ -19,8 +19,7 @@ class HashTable
 private:
     // Compontents of a Hash Table
     Slot hashTable[MAXHASH];
-    int collisions;
-    int probeOrder[];
+    array<int, MAXHASH-1> probeOrder;
 
 public:
     // Constructor
