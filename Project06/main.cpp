@@ -1,3 +1,7 @@
+// 1. Jimmy Johnson
+// 2. 12/9/23
+// 3. Project 6 Hash Table
+
 #include "HashTable.h"
 #include "Database.h"
 
@@ -7,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    // Variables
     int collisions = 0;
     bool running = true;
     Database myDataBase;
@@ -15,12 +20,13 @@ int main()
     int UID;
     string year;
     Record record;
+    char response;
 
+    // Loop while program is operating
     while (running)
     {
-        char response;
         cout << endl;
-        cout << "Would you like to (I)nsert, (D)elete, or (S)earch for a record, (P)rint the database, or (Q)uit?"<< endl;
+        cout << "Would you like to (I)nsert, (D)elete, or (S)earch for a record, (P)rint the database, or (Q)uit?" << endl;
         cout << "Enter action: ";
 
         cin >> response;
@@ -98,14 +104,5 @@ int main()
             running = false;
             break;
         }
-
     }
 }
-/*
-code hashtable
-code database
-put hashtable in database
-make main file
-main file control database
-database control hashtable
-*/

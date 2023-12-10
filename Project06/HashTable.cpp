@@ -1,17 +1,23 @@
 // 1. Jimmy Johnson
-// 2. 12/08/23
-// 3. Project 6 Hash Table Database
+// 2. 12/9/23
+// 3. Project 6 Hash Table
 
 #include "HashTable.h"
 #include "hashfunction.h"
 #include "shuffle.h"
 
+/// @brief Default constructor
 HashTable::HashTable()
 {
     filledSlots = 0;
     probeOrder = makeShuffledArray();
 }
 
+/// @brief Adds a key value pair to the hash table and updates collisions
+/// @param key
+/// @param index
+/// @param collisions
+/// @return True if inserted
 bool HashTable::insert(int key, int index, int &collisions)
 {
 
@@ -48,6 +54,9 @@ bool HashTable::insert(int key, int index, int &collisions)
     }
 }
 
+/// @brief Removes the key value pair and places a tombstone
+/// @param key
+/// @return True if removed
 bool HashTable::remove(int key)
 {
     unsigned int hash = jsHash(key) % MAXHASH;
@@ -79,6 +88,11 @@ bool HashTable::remove(int key)
     }
 }
 
+/// @brief Search function for a hash table
+/// @param key
+/// @param index
+/// @param collisions
+/// @return True if key is found
 bool HashTable::find(int key, int &index, int &collisions)
 {
     unsigned int hash = jsHash(key) % MAXHASH;
@@ -108,16 +122,23 @@ bool HashTable::find(int key, int &index, int &collisions)
     }
 }
 
+/// @brief Calculation function
+/// @return Loading factor n/N
 float HashTable::alpha()
 {
     return filledSlots / MAXHASH;
 }
 
+/// @brief Helper function for print
+/// @param key
+/// @return Slot object for access to items in slot
 Slot HashTable::getSlot(int key) const
 {
     return hashTable[jsHash(key) % MAXHASH];
 }
 
+/// @brief Print function
+/// @param os
 void HashTable::print(ostream &os) const
 {
     os << "HashTable Contents:" << endl;

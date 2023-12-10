@@ -1,18 +1,22 @@
-// Jimmy Johnson
-// 12/08/23
-// Project 6 Hash Table
+// 1. Jimmy Johnson
+// 2. 12/9/23
+// 3. Project 6 Hash Table
 
 #include "Database.h"
 #include "hashfunction.h"
 #include "Slot.h"
 #include "HashTable.h"
-// #include "HashTable.h"
 
+/// @brief Default constructor
 Database::Database()
 {
     filledSlots = 0;
 }
 
+/// @brief Adds a new record to the database
+/// @param newRecord
+/// @param collisions
+/// @return True if inserted
 bool Database::insert(const Record &newRecord, int &collisions)
 {
     int index = 0;
@@ -32,8 +36,15 @@ bool Database::insert(const Record &newRecord, int &collisions)
             return false;
         }
     }
+    else
+    {
+        return false;
+    }
 }
 
+/// @brief Removes all data from the database in association with the key
+/// @param key
+/// @return True if removed
 bool Database::remove(int key)
 {
     int index = 0;
@@ -63,6 +74,11 @@ bool Database::remove(int key)
     }
 }
 
+/// @brief Searches the database for the UID and updates the foundRecord and collisions variables
+/// @param uid
+/// @param foundRecord
+/// @param collisions
+/// @return True if found
 bool Database::find(int uid, Record &foundRecord, int &collisions)
 {
     int index = 0;
@@ -79,11 +95,15 @@ bool Database::find(int uid, Record &foundRecord, int &collisions)
     }
 }
 
+/// @brief Calculation function
+/// @return The loading factor of n/N
 float Database::alpha()
 {
     return filledSlots / MAXHASH;
 }
 
+/// @brief Prints the database contents to the terminal
+/// @param os
 void Database::print(ostream &os) const
 {
     os << "Database Contents:" << endl;
@@ -95,7 +115,7 @@ void Database::print(ostream &os) const
         {
             os << "HashTable Slot : " << i
                << ", recordStore slot " << i
-               << " -- " 
+               << " -- "
                << recordStore[i].getLastName() << ", "
                << recordStore[i].getFirstName() << " (U"
                << recordStore[i].getUID() << "): "
