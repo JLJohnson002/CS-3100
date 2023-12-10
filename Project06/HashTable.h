@@ -19,7 +19,7 @@ class HashTable
 private:
     // Compontents of a Hash Table
     Slot hashTable[MAXHASH];
-    array<unsigned int, MAXHASH-1> probeOrder;
+    array<unsigned int, MAXHASH - 1> probeOrder;
     float filledSlots;
 
 public:
@@ -32,7 +32,7 @@ public:
 
     bool find(int key, int &index, int &collisions);
 
-    Slot getSlot();
+    Slot getSlot(int key) const; // for print of database
 
     float alpha();
 

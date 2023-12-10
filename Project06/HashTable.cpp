@@ -43,7 +43,7 @@ bool HashTable::insert(int key, int index, int &collisions)
     }
     else
     {
-        cout << "no insert"<< endl;
+        cout << "no insert" << endl;
         return false;
     }
 }
@@ -111,6 +111,11 @@ bool HashTable::find(int key, int &index, int &collisions)
 float HashTable::alpha()
 {
     return filledSlots / MAXHASH;
+}
+
+Slot HashTable::getSlot(int key) const
+{
+    return hashTable[jsHash(key) % MAXHASH];
 }
 
 void HashTable::print(ostream &os) const

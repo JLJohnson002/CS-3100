@@ -96,11 +96,5 @@ public:
 			os << "Key: " << me.key << ", Index: " << me.index;
 		return os;
 	}
-
-	// No destructor is needed as Slots don't use any dynamically
-	// allocated memory
-	~Slot()
-	{
-	}
 };
 
