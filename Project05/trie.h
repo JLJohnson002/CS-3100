@@ -11,7 +11,6 @@ using namespace std;
 
 class Trie
 {
-public:
     // Global variable
     vector<string> wordList;
 
@@ -30,6 +29,13 @@ public:
         }
     };
 
+private:
+    // Components of a Trie
+    TrieNode *root;
+    int numWords;
+    int numNodes;
+
+public:
     // Constructor
     Trie();
 
@@ -37,7 +43,7 @@ public:
     Trie(const Trie &s);
 
     // Copy Helper
-    void copy(const TrieNode * const &from, TrieNode *&to);
+    void copy(const TrieNode *const &from, TrieNode *&to);
 
     // Destructor
     ~Trie();
@@ -70,11 +76,5 @@ public:
     vector<string> completeHelper(TrieNode *cur, string word);
 
     // Overload for = constructor to copy tries
-    Trie& operator=(const Trie &trie2);
-
-private:
-    // Components of a Trie
-    TrieNode *root;
-    int numWords;
-    int numNodes;
+    Trie &operator=(const Trie &trie2);
 };
